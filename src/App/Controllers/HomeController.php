@@ -9,6 +9,7 @@ class HomeController
     public function index(): void
     {
         $userService = new UserService();
+        $totalUsers = $userService->countUsers();
 
         $saludo = "Hola desde " . APP_NAME;
         $edad   = 20;

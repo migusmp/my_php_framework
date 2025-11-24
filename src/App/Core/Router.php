@@ -2,47 +2,148 @@
 
 namespace App\Core;
 
+/**
+ * Router principal del "mini framework".
+ *
+ * Soporta:
+ *  - Rutas GET/POST/PUT
+ *  - Handlers tipo [Controlador::class, 'metodo'] o closures
+ *  - Middlewares registrables por nombre
+ *  - Sintaxis fluida tipo:
+ *
+ *      $router->middleware('auth')->get('/dashboard', [...]);
+ */
 class Router
 {
+    /**
+     * Estructura de rutas:
+     *
+     * [
+     *   'GET' => [
+     *      '/about' => [
+     *          'handler'    => [AboutController::class, 'index'],
+     *          'middleware' => ['auth', 'otraCosa'],
+     *      ],
+     *   ],
+     *   'POST' => [
+     *      '/login' => [
+     *          'handler'    => [AuthController::class, 'post_login'],
+     *          'middleware' => ['guest'],
+     *      ],
+     *   ],
+     * ]
+     *
+     * @var array<string, array<string, array{handler: callable|array, middleware: string[]}>>
+     */
     private array $routes = [];
 
-    /* Esto es lo que se guarda en el $routes
-        $this->routes = [
-                'GET' => [
-                '/' => [HomeController::class, 'index']
-            ]
-        ];
-    */
+    /**
+     * Mapa de middlewares registrados por nombre.
+     *
+     * Ejemplo:
+     *   'auth'  => instancia de AuthMiddleware (invocable)
+     *   'guest' => instancia de GuestMiddleware (invocable)
+     *
+     * @var array<string, callable>
+     */
+    private array $middlewareMap = [];
 
-    public function get(string $path, callable|array $handler): void
-    {
-        $this->routes['GET'][$path] = $handler;
-    }
+    /**
+     * Lista de middlewares a aplicar a la SIGUIENTE ruta registrada.
+     *
+     * Se usa para permitir sintaxis fluida:
+     *
+     *   $router->middleware('auth')->get('/dashboard', ...);
+     *
+     * @var string[]
+     */
+    private array $currentMiddleware = [];
 
-    public function post(string $path, callable|array $handler): void
+    /**
+     * Asocia un nombre de middleware a un callable/instancia invocable.
+     *
+     * Ejemplo de uso:
+     *   $router->registerMiddleware('auth', new AuthMiddleware());
+     */
+    public function registerMiddleware(string $name, callable $middleware): void
     {
-        $this->routes['POST'][$path] = $handler;
-    }
-
-    public function put(string $path, callable|array $handler): void
-    {
-        $this->routes['PUT'][$path] = $handler;
+        $this->middlewareMap[$name] = $middleware;
     }
 
     /**
-     * Resuelve la petición HTTP actual y ejecuta el handler asociado.
+     * Define uno o varios middlewares para la siguiente ruta que se registre.
+     *
+     * Permite encadenar llamadas:
+     *
+     *   $router
+     *      ->middleware(['auth', 'verified'])
+     *      ->get('/perfil', [ProfileController::class, 'index']);
+     */
+    public function middleware(string|array $names): self
+    {
+        $this->currentMiddleware = (array) $names;
+        return $this; // Fluent interface (permite ->middleware()->get())
+    }
+
+    /**
+     * Método interno para registrar una ruta, independientemente del método HTTP.
+     */
+    private function register(string $method, string $path, callable|array $handler): void
+    {
+        $this->routes[$method][$path] = [
+            'handler'    => $handler,
+            'middleware' => $this->currentMiddleware,
+        ];
+
+        // Limpia los middlewares temporales para no afectar a futuras rutas.
+        $this->currentMiddleware = [];
+    }
+
+    /**
+     * Registra una ruta GET.
+     */
+    public function get(string $path, callable|array $handler): void
+    {
+        $this->register('GET', $path, $handler);
+    }
+
+    /**
+     * Registra una ruta POST.
+     */
+    public function post(string $path, callable|array $handler): void
+    {
+        $this->register('POST', $path, $handler);
+    }
+
+    /**
+     * Registra una ruta PUT.
+     */
+    public function put(string $path, callable|array $handler): void
+    {
+        $this->register('PUT', $path, $handler);
+    }
+
+    /**
+     * Resuelve la petición HTTP actual y ejecuta el handler asociado,
+     * pasando antes por la cadena de middlewares definida para esa ruta.
      *
      * Ejemplo de flujo:
      *   - Petición:   GET /about
      *   - $uri:       "/about"
      *   - $method:    "GET"
-     *   - $routes['GET']['/about'] = [AboutController::class, 'index']
+     *   - $routes['GET']['/about'] = [
+     *         'handler'    => [AboutController::class, 'index'],
+     *         'middleware' => ['auth']
+     *     ]
      *
      * El router:
-     *   1) Localiza el handler correspondiente en $this->routes.
-     *   2) Si es [Controlador::class, 'metodo'], instancia el controlador y llama al método.
-     *   3) Si es una función/closure, la ejecuta tal cual.
-     *   4) Si no encuentra nada, responde con 404.
+     *   1) Normaliza la ruta (sin query string).
+     *   2) Localiza el array de ruta correspondiente en $this->routes.
+     *   3) Construye un "pipeline" de middlewares que rodea al handler final.
+     *   4) Ejecuta la cadena resultante.
+     *
+     * Si no encuentra la ruta, responde con 404 y, si existe,
+     * carga templates/notFound.php.
      */
     public function dispatch(string $uri, string $method): void
     {
@@ -58,34 +159,19 @@ class Router
         $path = \parse_url($uri, PHP_URL_PATH) ?? '/';
 
         /**
-         * 2. Buscar el handler registrado para este método y ruta
-         *
-         * $this->routes tiene una estructura similar a:
-         *
-         *   [
-         *     'GET' => [
-         *        '/'       => [HomeController::class, 'index'],
-         *        '/about'  => [AboutController::class, 'index'],
-         *     ],
-         *     'POST' => [
-         *        '/login' => [AuthController::class, 'login'],
-         *     ],
-         *   ]
-         *
-         * Así que aquí estamos haciendo algo como:
-         *   $handler = $this->routes['GET']['/about'] ?? null;
+         * 2. Buscar la configuración registrada para este método y ruta
          */
-        $handler = $this->routes[$method][$path] ?? null;
+        $route = $this->routes[$method][$path] ?? null;
 
         /**
-         * 3. Si no hay handler asociado a esa combinación método + ruta,
-         *    devolvemos un 404 estándar.
+         * 3. Si no hay ruta asociada a esa combinación método + path,
+         *    devolvemos un 404 estándar intentando usar una vista notFound.php.
          */
-        if (!$handler) {
+        if (!$route) {
             \http_response_code(404);
 
-            // __DIR__ = /ruta/al/proyecto/src/Core
-            // dirname(__DIR__, 2) = /ruta/al/proyecto
+            // __DIR__ = /ruta/al/proyecto/src/App/Core
+            // dirname(__DIR__, 3) = /ruta/al/proyecto
             $viewFile = \dirname(__DIR__, 3) . '/templates/notFound.php';
 
             if (\file_exists($viewFile)) {
@@ -96,84 +182,83 @@ class Router
             return;
         }
 
-        /**
-         * 4. Caso 1: el handler es un array => asumimos que es [Controlador::class, 'metodo']
-         *
-         *   Ejemplo:
-         *     $router->get('/', [HomeController::class, 'index']);
-         *
-         *   Internamente:
-         *     $handler = ['App\Controllers\HomeController', 'index'];
-         */
-        if (\is_array($handler) && \count($handler) === 2) {
-            // Desempaquetamos el array:
-            //   $class  = "App\Controllers\HomeController"
-            //   $action = "index"
-            [$class, $action] = $handler;
+        $handler     = $route['handler']    ?? null;
+        $middlewares = $route['middleware'] ?? [];
 
-            /**
-             * Verificamos que la clase realmente exista. Esto, además,
-             * dispara el autoload si aún no se ha cargado el archivo
-             * correspondiente.
-             */
-            if (!\class_exists($class)) {
-                throw new \RuntimeException("Controller $class no existe");
-            }
-
-            /**
-             * Instanciamos el controlador dinámicamente.
-             *
-             * Es equivalente a:
-             *   $controller = new App\Controllers\HomeController();
-             */
-            $controller = new $class();
-
-            /**
-             * Antes de llamar al método, comprobamos que exista en el controlador.
-             *
-             * Esto evita errores fatales tipo:
-             *   "Call to undefined method HomeController::indez()"
-             *
-             * Si en las rutas te equivocas y pones:
-             *   [HomeController::class, 'indez']
-             * en vez de 'index', atrapamos el fallo aquí con un mensaje claro.
-             */
-            if (!\method_exists($controller, $action)) {
-                throw new \RuntimeException("Método $action no existe en $class");
-            }
-
-            /**
-             * Llamada dinámica al método del controlador.
-             *
-             *   $controller->{$action}();
-             *
-             * Si $action = 'index', equivale a:
-             *   $controller->index();
-             */
-            $controller->{$action}();
-            return;
+        if (!$handler) {
+            throw new \RuntimeException('Handler de ruta no definido');
         }
 
         /**
-         * 5. Caso 2: el handler es algo ejecutable (callable), normalmente un closure.
+         * 4. Definimos el "core handler": la ejecución real del handler.
          *
-         *   Ejemplo:
-         *     $router->get('/ping', function () {
-         *         echo 'pong';
-         *     });
-         *
-         *   En este caso, simplemente ejecutamos la función.
+         * Aquí simplemente aplicamos la lógica que ya tenías:
+         *   - Si es [Controlador::class, 'metodo'] → instanciamos y llamamos al método.
+         *   - Si es callable/closure → call_user_func.
          */
-        if (\is_callable($handler)) {
-            \call_user_func($handler);
-            return;
+        $coreHandler = function () use ($handler) {
+            // Caso 1: [Controlador::class, 'metodo']
+            if (\is_array($handler) && \count($handler) === 2) {
+                [$class, $action] = $handler;
+
+                if (!\class_exists($class)) {
+                    throw new \RuntimeException("Controller $class no existe");
+                }
+
+                $controller = new $class();
+
+                if (!\method_exists($controller, $action)) {
+                    throw new \RuntimeException("Método $action no existe en $class");
+                }
+
+                $controller->{$action}();
+                return;
+            }
+
+            // Caso 2: closure / callable normal
+            if (\is_callable($handler)) {
+                \call_user_func($handler);
+                return;
+            }
+
+            throw new \RuntimeException('Handler de ruta no válido');
+        };
+
+        /**
+         * 5. Construir la cadena de middlewares que rodea al coreHandler.
+         *
+         * Cada middleware es un callable que recibe $next (el siguiente
+         * elemento de la cadena) y decide si lo ejecuta o no.
+         *
+         * Ejemplo conceptual:
+         *   authMiddleware -> guestMiddleware -> coreHandler
+         */
+        $runner = $coreHandler;
+
+        // Recorremos los middlewares en orden inverso para que el primero
+        // configurado sea el más externo en la cadena.
+        foreach (\array_reverse($middlewares) as $name) {
+            $mw = $this->middlewareMap[$name] ?? null;
+
+            if (!$mw) {
+                // Si no existe un middleware con ese nombre, lo ignoramos o
+                // podríamos lanzar una excepción si queremos ser estrictos.
+                continue;
+            }
+
+            $next = $runner;
+
+            // Cada nuevo "runner" envuelve al anterior
+            $runner = function () use ($mw, $next) {
+                // Llamamos al middleware pasándole el siguiente eslabón.
+                // El middleware decide si llama o no a $next().
+                $mw($next);
+            };
         }
 
         /**
-         * 6. Si llegamos hasta aquí, significa que el handler tiene un formato
-         *    que no reconocemos ni como [Controller::class, 'metodo']
-         *    ni como callable, así que lanzamos una excepción.
+         * 6. Ejecutar la cadena completa de middlewares + handler final.
          */
-        throw new \RuntimeException('Handler de ruta no válido');
+        $runner();
     }
 }

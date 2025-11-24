@@ -1,19 +1,14 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Home - <?= APP_NAME ?></title>
-</head>
-<body>
-    <h1><?= htmlspecialchars($saludo, ENT_QUOTES, 'UTF-8') ?></h1>
+<?php
+use App\Core\Auth;
 
-    <p>Edad: <?= $edad ?></p>
-    <p><?= $mensajeEdad ?></p>
+$user = Auth::user();
+?>
 
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/about">About</a>
-    </nav>
-</body>
-</html>
+<?php if ($user): ?>
+  <p>Bienvenido <?= htmlspecialchars($user['name']) ?></p>
+  <a href="/dashboard">Dashboard</a><br>
+  <a href="/logout">Cerrar sesión</a>
+<?php else: ?>
+  <a href="/login">Iniciar sesión</a>
+<?php endif; ?>
 
