@@ -1,0 +1,93 @@
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0d0f10;
+            /* casi negro, estilo dark */
+            color: #c8f7f4;
+            /* verde turquesa clarito */
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        h1 {
+            font-size: 120px;
+            margin: 0;
+            font-weight: 900;
+            color: #33f1d1;
+            /* verde turquesa más vivo */
+            text-shadow: 0 0 20px rgba(51, 241, 209, 0.6);
+        }
+
+        p {
+            font-size: 20px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #33f1d1;
+            color: #0d0f10;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 12px rgba(51, 241, 209, 0.5);
+        }
+
+        a:hover {
+            background: #27caae;
+            box-shadow: 0 0 20px rgba(39, 202, 174, 0.8);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efecto de partículas sutiles */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(51, 241, 209, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: .6;
+            }
+
+            50% {
+                transform: translateY(-40px) translateX(20px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: .6;
+            }
+        }
