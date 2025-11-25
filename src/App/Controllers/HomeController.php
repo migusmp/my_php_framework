@@ -16,4 +16,9 @@ class HomeController
             'styles' => ['/assets/css/home.css'],
         ]);
     }
+
+    public function show(string $id): void
+    {
+        echo $id;
+    }
 }

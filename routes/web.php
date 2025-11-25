@@ -1,22 +1,15 @@
 <?php
 
-use App\Controllers\HomeController;
-use App\Controllers\AboutController;
-use App\Controllers\AuthController;
-use App\Controllers\DashboardController;
+$router->get('/', 'HomeController@index');
+$router->get('/product/{id}', 'HomeController@show'); // RUTA DE PRUEBA {}
+$router->get('/about', 'AboutController@index');
 
-// Rutas públicas
-$router->get('/', [HomeController::class, 'index']);
-$router->get('/about', [AboutController::class, 'index']);
+$router->middleware('guest')->get('/login', 'AuthController@get_login');
+$router->middleware('guest')->get('/register', 'AuthController@get_register');
 
-// Auth
-$router->middleware('guest')->get('/login', [AuthController::class, 'get_login']);
-$router->middleware('guest')->get('/register', [AuthController::class, 'get_register']);
-$router->get('/logout', [AuthController::class, 'logout']);
+$router->get('/logout', 'AuthController@logout');
 
-// POST de auth
-$router->middleware('guest', 'csrf')->post('/login', [AuthController::class, 'post_login']);
-$router->middleware('guest', 'csrf')->post('/register', [AuthController::class, 'post_register']);
+$router->middleware('guest', 'csrf')->post('/login', 'AuthController@post_login');
+$router->middleware('guest', 'csrf')->post('/register', 'AuthController@post_register');
 
-// Rutas protegidas
-$router->middleware('auth')->get('/dashboard', [DashboardController::class, 'index']);
+$router->middleware('auth')->get('/dashboard', 'DashboardController@index');

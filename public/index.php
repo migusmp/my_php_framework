@@ -16,6 +16,7 @@ use App\Middleware\GuestMiddleware;
 
 // Creamos el router del "framework"
 $router = new Router();
+$router->setControllerNamespace('App\\Controllers');
 
 $router->registerMiddleware('admin', new AdminMiddleware());
 $router->registerMiddleware('auth', new AuthMiddleware());
