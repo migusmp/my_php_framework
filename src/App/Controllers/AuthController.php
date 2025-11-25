@@ -8,14 +8,20 @@ use App\Core\View;
 use App\Core\Validator;
 use App\Services\SessionService;
 use App\Services\UserService;
+use App\Models\User;
 
 /**
- * Controlador encargado de la autenticación del usuario:
- * registro, login y logout.
+ * Controlador responsable de la autenticación de usuarios.
  *
- * Implementa una capa de validación reutilizable mediante
- * la clase App\Core\Validator, lo que permite mantener
- * los controladores limpios y coherentes.
+ * Gestiona:
+ *  - Registro (alta de cuenta)
+ *  - Login (inicio de sesión)
+ *  - Logout (cierre de sesión)
+ *
+ * Se apoya en:
+ *  - UserService para la lógica de negocio de usuarios
+ *  - SessionService para la gestión de sesiones persistentes
+ *  - Validator para la validación reutilizable de formularios
  */
 class AuthController
 {
@@ -31,7 +37,9 @@ class AuthController
 
     /**
      * Renderiza la vista del formulario de registro.
-     * Se usa internamente para reutilizar código.
+     *
+     * @param array       $errors   Errores de validación (opcional)
+     * @param string|null $oldEmail Email previamente enviado (opcional)
      */
     private function renderRegister(array $errors = [], ?string $oldEmail = null): void
     {
@@ -39,12 +47,15 @@ class AuthController
             'title'      => 'Registro',
             'errorsData' => $errors,
             'oldEmail'   => $oldEmail ?? '',
-            'styles' => ['/assets/css/auth.css'],
+            'styles'     => ['/assets/css/auth.css'],
         ]);
     }
 
     /**
-     * Renderiza la vista del login.
+     * Renderiza la vista del formulario de login.
+     *
+     * @param array       $errors   Errores de validación (opcional)
+     * @param string|null $oldEmail Email previamente enviado (opcional)
      */
     private function renderLogin(array $errors = [], ?string $oldEmail = null): void
     {
@@ -52,7 +63,7 @@ class AuthController
             'title'      => 'Login',
             'errorsData' => $errors,
             'oldEmail'   => $oldEmail ?? '',
-            'styles' => ['/assets/css/auth.css'],
+            'styles'     => ['/assets/css/auth.css'],
         ]);
     }
 
@@ -60,7 +71,9 @@ class AuthController
     //                             REGISTER
     // ================================================================
 
-    /** Muestra el formulario de registro */
+    /**
+     * Muestra el formulario de registro.
+     */
     public function get_register(): void
     {
         $this->renderRegister();
@@ -70,30 +83,27 @@ class AuthController
      * Procesa el formulario de registro.
      *
      * Flujo:
-     * 1) Validación de campos usando Validator
-     * 2) Comprobar si el usuario ya existe
-     * 3) Crear usuario
-     * 4) Crear sesión + cookie de autenticación
+     *  1) Obtener y validar datos de entrada
+     *  2) Comprobar si el email ya está registrado
+     *  3) Crear usuario mediante UserService
+     *  4) Crear sesión persistente + cookie de autenticación
      */
     public function post_register(): void
     {
-        // Capturamos los valores enviados
+        // 1) Captura de datos brutos enviados por el formulario
         $name     = \filter_input(INPUT_POST, 'name');
         $emailRaw = \filter_input(INPUT_POST, 'email');
         $email    = $emailRaw ? \filter_var($emailRaw, FILTER_SANITIZE_EMAIL) : null;
-        $password = \filter_input(INPUT_POST, 'password'); // no se sanea para no modificar su valor
+        // La contraseña no se sanea para no alterar su valor
+        $password = \filter_input(INPUT_POST, 'password');
 
         /**
-         * 1) VALIDACIÓN REUTILIZABLE
+         * 2) Validación de datos mediante el validador reutilizable.
          *
-         * Aquí usamos App\Core\Validator con sus reglas tipo:
-         * - required
-         * - email
-         * - min:x
-         * - max:x
-         *
-         * Esto mantiene el controlador limpio y asegura que
-         * cualquier formulario pueda usar el mismo sistema.
+         * Reglas:
+         *  - name: requerido, longitud 2-50
+         *  - email: requerido, formato email
+         *  - password: requerido, mínimo 4 caracteres
          */
         $validator = Validator::make(
             [
@@ -108,78 +118,100 @@ class AuthController
             ]
         );
 
-        // Si la validación falla, reenviamos los errores a la vista
         if ($validator->fails()) {
+            // Normalizamos la estructura de errores para encajar con las vistas
             $errors = $this->flattenErrors($validator->errors());
             $this->renderRegister($errors, $email);
             return;
         }
 
-        // Recuperar datos ya validados y limpios
+        // Datos ya validados y normalizados
         $validated = $validator->validated();
         $name      = $validated['name'];
         $email     = $validated['email'];
         $password  = $validated['password'];
 
         /**
-         * 2) Verificar si el email ya existe
+         * 3) Verificar si ya existe un usuario con ese correo.
+         *
+         * UserService::findUserByEmail() devuelve:
+         *  - User|null
          */
-        if ($this->userService->findUserByEmail($email)) {
-            $this->renderRegister(['user' => "Ya existe una cuenta con ese correo."], $email);
+        $existingUser = $this->userService->findUserByEmail($email);
+        if ($existingUser instanceof User) {
+            $this->renderRegister(
+                ['user' => 'Ya existe una cuenta con ese correo.'],
+                $email
+            );
             return;
         }
 
         /**
-         * 3) Registrar usuario
+         * 4) Registrar usuario mediante el servicio.
+         *
+         *  - El servicio se encarga de:
+         *      * validar reglas de negocio adicionales
+         *      * hashear la contraseña
+         *      * delegar la inserción al UserRepository
          */
-        $hashedPassword = \password_hash($password, PASSWORD_BCRYPT);
-
         try {
-            $userId = $this->userService->createUser($name, $email, $hashedPassword);
-
-            /**
-             * 4) Crear sesión persistente + cookie de autenticación
-             */
-            $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-            $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
-
-            // Crear sesión en la BBDD y obtener token
-            $token = $this->sessionService->createSession($userId, $userAgent, $ipAddress);
-
-            // Enviar cookie segura
-            \setcookie(
-                'auth_token',
-                $token,
-                [
-                    'expires'  => \time() + 60 * 60 * 24 * 7, // 7 días
-                    'path'     => '/',
-                    'httponly' => true,
-                    'samesite' => 'Lax',
-                ]
-            );
-
-            // También guardamos datos rápidos en $_SESSION
-            \session_regenerate_id(true);
-            $_SESSION['user'] = [
-                'id'    => $userId,
-                'name'  => $name,
-                'email' => $email,
-            ];
-
-            \header('Location: /');
-            exit;
+            $user = $this->userService->createUser($name, $email, $password);
         } catch (\Throwable $e) {
-            // Error inesperado al guardar en BD
-            $this->renderRegister(['server' => "Error al crear la cuenta. Inténtalo más tarde."], $email);
+            // En caso de error inesperado en BBDD/servicio, no exponemos detalles.
+            $this->renderRegister(
+                ['server' => 'Error al crear la cuenta. Inténtalo de nuevo más tarde.'],
+                $email
+            );
             return;
         }
+
+        /**
+         * 5) Crear sesión persistente + cookie de autenticación.
+         *
+         *  - Se almacena un token en la tabla de sesiones
+         *  - Se envía dicho token en una cookie segura (httponly, samesite)
+         *  - Además, se mantiene una sesión "rápida" en $_SESSION
+         */
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
+        $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
+
+        // Crear sesión en BBDD y obtener token
+        $token = $this->sessionService->createSession($user->id, $userAgent, $ipAddress);
+
+        // Enviar cookie con el token de sesión persistente
+        \setcookie(
+            'auth_token',
+            $token,
+            [
+                'expires'  => \time() + 60 * 60 * 24 * 7, // 7 días
+                'path'     => '/',
+                'httponly' => true,
+                'samesite' => 'Lax',
+                // 'secure' => true, // habilitar en producción con HTTPS
+            ]
+        );
+
+        // Refrescamos el ID de sesión y guardamos información básica
+        \session_regenerate_id(true);
+        $_SESSION['user'] = [
+            'id'         => $user->id,
+            'name'       => $user->name,
+            'email'      => $user->email,
+            'role'       => $user->role,
+            'created_at' => $user->created_at,
+        ];
+
+        \header('Location: /');
+        exit;
     }
 
     // ================================================================
     //                               LOGIN
     // ================================================================
 
-    /** Muestra el formulario de login */
+    /**
+     * Muestra el formulario de login.
+     */
     public function get_login(): void
     {
         $this->renderLogin();
@@ -189,20 +221,22 @@ class AuthController
      * Procesa el formulario de login.
      *
      * Flujo:
-     * 1) Validación
-     * 2) Comprobar credenciales
-     * 3) Crear sesión + cookie
+     *  1) Validar campos (email y password)
+     *  2) Autenticar credenciales mediante UserService::login()
+     *  3) Crear sesión persistente + cookie y sesión en $_SESSION
      */
     public function post_login(): void
     {
-        // Capturar datos enviados
+        // 1) Captura de datos de entrada
         $emailRaw = \filter_input(INPUT_POST, 'email');
         $email    = $emailRaw ? \filter_var($emailRaw, FILTER_SANITIZE_EMAIL) : null;
         $email    = $email !== null ? \trim($email) : null;
         $password = \filter_input(INPUT_POST, 'password');
 
         /**
-         * 1) VALIDACIÓN REUTILIZABLE
+         * Validación reutilizable:
+         *  - email: requerido, formato válido
+         *  - password: requerido
          */
         $validator = Validator::make(
             [
@@ -226,44 +260,51 @@ class AuthController
         $password  = $validated['password'];
 
         /**
-         * 2) Buscar usuario y verificar contraseña
+         * 2) Autenticación de usuario.
+         *
+         *  - UserService::login() devuelve:
+         *      * User si las credenciales son correctas
+         *      * null si son incorrectas
          */
-        $user = $this->userService->findUserByEmail($email);
+        $user = $this->userService->login($email, $password);
 
-        if (!$user || !\password_verify($password, $user['password'])) {
-            // Error unificado para no revelar si el email existe
-            $this->renderLogin(['verification' => "Correo o contraseña incorrectos."], $email);
+        if (!$user instanceof User) {
+            // Mensaje genérico para no revelar si el email existe o no
+            $this->renderLogin(
+                ['verification' => 'Correo o contraseña incorrectos.'],
+                $email
+            );
             return;
         }
 
         /**
-         * 3) Login correcto → crear sesión persistente y cookie
+         * 3) Login correcto → creación de sesión persistente + cookie.
          */
-        $userId    = (int) $user['id'];
         $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
         $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
 
-        $token = $this->sessionService->createSession($userId, $userAgent, $ipAddress);
+        $token = $this->sessionService->createSession($user->id, $userAgent, $ipAddress);
 
         \setcookie(
             'auth_token',
             $token,
             [
-                'expires'  => \time() + 60 * 60 * 24 * 7,
+                'expires'  => \time() + 60 * 60 * 24 * 7, // 7 días
                 'path'     => '/',
                 'httponly' => true,
                 'samesite' => 'Lax',
+                // 'secure' => true, // habilitar en producción con HTTPS
             ]
         );
 
-        // Sesión rápida en $_SESSION
+        // Sesión nativa con datos mínimos del usuario
         \session_regenerate_id(true);
         $_SESSION['user'] = [
-            'id'         => $userId,
-            'name'       => $user['name'],
-            'email'      => $user['email'],
-            'role'       => $user['role'],
-            'created_at' => $user['created_at'],
+            'id'         => $user->id,
+            'name'       => $user->name,
+            'email'      => $user->email,
+            'role'       => $user->role,
+            'created_at' => $user->created_at,
         ];
 
         \header('Location: /');
@@ -275,17 +316,20 @@ class AuthController
     // ================================================================
 
     /**
-     * Elimina la sesión del usuario tanto en BBDD como en navegador.
+     * Cierra la sesión del usuario:
+     *  - Elimina la sesión persistente en BBDD
+     *  - Elimina la cookie de autenticación
+     *  - Limpia y destruye la sesión nativa de PHP
      */
     public function logout(): void
     {
         $token = $_COOKIE['auth_token'] ?? null;
 
         if ($token) {
-            // Eliminar sesión persistente
+            // Eliminar sesión persistente en la BBDD
             $this->sessionService->deleteSessionByToken($token);
 
-            // Borrar cookie
+            // Borrar cookie de autenticación
             \setcookie(
                 'auth_token',
                 '',
@@ -294,14 +338,14 @@ class AuthController
                     'path'     => '/',
                     'httponly' => true,
                     'samesite' => 'Lax',
+                    // 'secure' => true, // habilitar en producción con HTTPS
                 ]
             );
         }
 
-        /**
-         * Limpiar sesión nativa completa
-         */
+        // Limpiar completamente la sesión nativa
         $_SESSION = [];
+
         if (\ini_get('session.use_cookies')) {
             $params = \session_get_cookie_params();
             \setcookie(
@@ -314,6 +358,7 @@ class AuthController
                 $params['httponly']
             );
         }
+
         \session_destroy();
 
         \header('Location: /login');
@@ -325,13 +370,19 @@ class AuthController
     // ================================================================
 
     /**
-     * Aplana los errores provenientes del Validator.
+     * Aplana los errores del Validator para simplificar su uso en las vistas.
      *
-     * Ejemplo:
-     *   ['email' => ['Campo requerido', 'Formato inválido']]
-     * → ['email' => 'Campo requerido']
+     * Ejemplo de entrada:
+     *  [
+     *      'email' => ['Campo requerido', 'Formato inválido'],
+     *      'password' => ['Campo requerido']
+     *  ]
      *
-     * Esto encaja con tus vistas actuales.
+     * Ejemplo de salida:
+     *  [
+     *      'email'    => 'Campo requerido',
+     *      'password' => 'Campo requerido'
+     *  ]
      */
     private function flattenErrors(array $errors): array
     {

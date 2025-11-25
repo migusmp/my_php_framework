@@ -1,64 +1,137 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Core\Database;
+use App\Models\User;
+use App\Repositories\UserRepository;
 use PDO;
 
+/**
+ * UserService
+ *
+ * Capa de lógica de negocio relacionada con usuarios.
+ * Aquí no hay SQL directo: se delega el acceso a datos al UserRepository.
+ */
 class UserService
 {
     private PDO $pdo;
 
+    /**
+     * Repositorio encargado de hablar con la tabla `users`.
+     */
+    private UserRepository $users;
+
     public function __construct()
     {
         // Obtenemos la conexión solo una vez
-        $this->pdo = Database::getConnection();
+        $this->pdo   = Database::getConnection();
+        $this->users = new UserRepository($this->pdo);
     }
 
-    public function isMayorEdad(int $age): bool
-    {
-        return $age >= 18;
-    }
+    /* =========================================================
+     *   Operaciones de usuarios
+     * ========================================================= */
 
-    public function mensajeEdad(int $age): string
+    /**
+     * Devuelve el número total de usuarios.
+     */
+    public function countUsers(): int
     {
-        return $this->isMayorEdad($age)
-            ? 'Eres mayor de edad'
-            : 'Eres menor de edad';
+        return $this->users->count();
     }
 
     /**
-    * Devuelve el número total de usuarios.
-    */
-    public function countUsers(): int
+     * Devuelve todos los usuarios.
+     *
+     * @return User[]
+     */
+    public function getAllUsers(): array
     {
-        $stmt = $this->pdo->query("SELECT COUNT(*) AS total FROM users");
-        $row = $stmt->fetch();
-        return $row['total'] ?? 0;
+        return $this->users->all();
     }
 
-    public function findUserByEmail(string $email)
+    /**
+     * Busca un usuario por ID.
+     */
+    public function getUserById(int $id): ?User
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-
-        // Devolvemos un array asociativo con el usuario o false si no existe
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $this->users->find($id);
     }
 
-    public function createUser(string $name, string $email, string $hashedPassword): int
+    /**
+     * Busca un usuario por email.
+     */
+    public function findUserByEmail(string $email): ?User
     {
-        $sql = 'INSERT INTO users (name, email, password)
-            VALUES (:name, :email, :password)';
+        return $this->users->findByEmail($email);
+    }
 
-        $stmt = $this->pdo->prepare($sql);
+    /**
+     * Crea un nuevo usuario aplicando la lógica de negocio:
+     *  - Comprobar que el email no exista
+     *  - Hashear la contraseña
+     *  - Asignar rol por defecto (user)
+     *
+     * Devuelve la entidad User recién creada.
+     */
+    public function createUser(
+        string $name,
+        string $email,
+        string $plainPassword,
+        string $role = 'user'
+    ): User {
+        // ¿Ya existe un usuario con ese email?
+        $existing = $this->users->findByEmail($email);
+        if ($existing !== null) {
+            throw new \RuntimeException('Ya existe un usuario con ese email.');
+        }
 
-        $stmt->execute([
-            ':name'     => $name,
-            ':email'    => $email,
-            ':password' => $hashedPassword,
-        ]);
+        // Hasheamos la contraseña
+        $hashedPassword = \password_hash($plainPassword, PASSWORD_BCRYPT);
 
-        return (int) $this->pdo->lastInsertId();
+        // Creamos el usuario en BBDD mediante el repositorio
+        return $this->users->create($name, $email, $hashedPassword, $role);
+    }
+
+    /**
+     * Lógica de login:
+     *  - Buscar usuario por email
+     *  - Verificar contraseña
+     * Devuelve User si las credenciales son correctas, o null si no.
+     */
+    public function login(string $email, string $plainPassword): ?User
+    {
+        $user = $this->users->findByEmail($email);
+
+        if ($user === null) {
+            return null;
+        }
+
+        if (!\password_verify($plainPassword, $user->password)) {
+            return null;
+        }
+
+        return $user;
+    }
+
+    /**
+     * Actualiza la contraseña de un usuario.
+     */
+    public function updatePassword(int $id, string $plainPassword): bool
+    {
+        $hashedPassword = \password_hash($plainPassword, PASSWORD_BCRYPT);
+
+        return $this->users->updatePassword($id, $hashedPassword);
+    }
+
+    /**
+     * Actualiza el rol de un usuario (ej: user → admin).
+     */
+    public function updateRole(int $id, string $role): bool
+    {
+        return $this->users->updateRole($id, $role);
     }
 }
