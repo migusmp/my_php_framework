@@ -1,6 +1,8 @@
 <h2>Iniciar sesión</h2>
 
 <form action="/login" method="post">
+    <?php csrf_field(); ?>
+
     <div class="form-group">
         <label for="email">Correo electrónico</label>
         <input

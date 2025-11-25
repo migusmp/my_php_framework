@@ -54,3 +54,5 @@ spl_autoload_register(function (string $class) {
         require $file;
     }
 });
+
+require_once __DIR__ . '/helpers.php';

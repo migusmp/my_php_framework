@@ -1,6 +1,7 @@
 <h2>Registrarse</h2>
 
 <form action="/register" method="post">
+    <?php csrf_field(); ?>
 
     <div class="form-group">
         <label for="name">Nombre</label>

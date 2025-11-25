@@ -16,6 +16,7 @@ use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Middleware\AdminMiddleware;
 use App\Middleware\AuthMiddleware;
+use App\Middleware\CsrfMiddleware;
 use App\Middleware\GuestMiddleware;
 
 // Creamos el router del "framework"
@@ -24,6 +25,7 @@ $router = new Router();
 $router->registerMiddleware('admin', new AdminMiddleware());
 $router->registerMiddleware('auth', new AuthMiddleware());
 $router->registerMiddleware('guest', new GuestMiddleware());
+$router->registerMiddleware('csrf', new CsrfMiddleware());
 
 // RUTAS GET
 $router->get('/', [HomeController::class, 'index']);
@@ -33,8 +35,8 @@ $router->middleware('guest')->get('/register', [AuthController::class, 'get_regi
 $router->get('/logout', [AuthController::class, 'logout']);
 
 // RUTAS POST
-$router->middleware('guest')->post('/login', [AuthController::class, 'post_login']);
-$router->middleware('guest')->post('/register', [AuthController::class, 'post_register']);
+$router->middleware('guest', 'csrf')->post('/login', [AuthController::class, 'post_login']);
+$router->middleware('guest', 'csrf')->post('/register', [AuthController::class, 'post_register']);
 
 // RUTAS PROTEGIDAS
 $router->middleware('auth')->get('/dashboard', [DashboardController::class, 'index']);

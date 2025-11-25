@@ -105,15 +105,20 @@ class Router
      * Permite encadenar llamadas:
      *
      *   $router
-     *      ->middleware(['auth', 'verified'])
+     *      ->middleware('auth', 'verified')
      *      ->get('/perfil', [ProfileController::class, 'index']);
      */
-    public function middleware(string|array $names): self
+    public function middleware(string|array ...$names): self
     {
-        $this->currentMiddleware = (array) $names;
-        return $this; // Fluent interface (permite ->middleware()->get())
-    }
+        $all = [];
 
+        foreach ($names as $name) {
+            $all = array_merge($all, (array) $name);
+        }
+
+        $this->currentMiddleware = array_values(array_unique($all));
+        return $this;
+    }
     /**
      * Define un grupo de rutas con un prefijo y middlewares comunes.
      *

@@ -9,6 +9,7 @@ use App\Core\Validator;
 use App\Services\SessionService;
 use App\Services\UserService;
 use App\Models\User;
+use App\Security\Csrf;
 
 /**
  * Controlador responsable de la autenticación de usuarios.
@@ -307,6 +308,8 @@ class AuthController
             'created_at' => $user->created_at,
         ];
 
+        Csrf::regenerateToken();
+
         \header('Location: /');
         exit;
     }
@@ -360,6 +363,8 @@ class AuthController
         }
 
         \session_destroy();
+
+        Csrf::regenerateToken();
 
         \header('Location: /login');
         exit;
