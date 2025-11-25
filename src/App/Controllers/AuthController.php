@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\Flash;
 use App\Core\View;
 use App\Core\Validator;
 use App\Services\SessionService;
@@ -202,6 +203,8 @@ class AuthController
             'created_at' => $user->created_at,
         ];
 
+        Flash::add('register_success', '¡Has sido registrado con éxito!', Flash::TYPE_SUCCESS);
+
         \header('Location: /');
         exit;
     }
@@ -270,14 +273,10 @@ class AuthController
         $user = $this->userService->login($email, $password);
 
         if (!$user instanceof User) {
-            // Mensaje genérico para no revelar si el email existe o no
-            $this->renderLogin(
-                ['verification' => 'Correo o contraseña incorrectos.'],
-                $email
-            );
-            return;
+            Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
+            \header('Location: /login');
+            exit;
         }
-
         /**
          * 3) Login correcto → creación de sesión persistente + cookie.
          */
@@ -307,6 +306,12 @@ class AuthController
             'role'       => $user->role,
             'created_at' => $user->created_at,
         ];
+
+        Flash::add(
+            'login_success',
+            '¡Has iniciado sesión correctamente!',
+            Flash::TYPE_SUCCESS
+        );
 
         Csrf::regenerateToken();
 

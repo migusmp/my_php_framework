@@ -12,3 +12,11 @@ const DB_PORT = '3306';
 const DB_NAME = 'php_vanilla_server';
 const DB_USER = 'root';
 const DB_PASS = '';
+
+
+// FLASH
+const FLASH = 'FLASH_MESSAGES';
+const FLASH_ERROR = 'error';
+const FLASH_WARNING = 'warning';
+const FLASH_INFO = 'info';
+const FLASH_SUCCESS = 'success';

@@ -33,12 +33,8 @@
         <?php endif; ?>
     </div>
 
-    <?php if (!empty($errorsData['verification'])): ?>
-        <div class="form-group">
-            <p class="error"><?= htmlspecialchars($errorsData['verification']) ?></p>
-        </div>
-    <?php endif; ?>
-
+    
+    <?= \App\Core\Flash::render('login_error') ?>
     <button type="submit">Iniciar sesión</button>
 </form>
 
