@@ -37,4 +37,6 @@ CREATE TABLE password_resets (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
-
+ALTER TABLE users
+    ADD COLUMN role ENUM('user', 'admin') NOT NULL DEFAULT 'user'
+    AFTER password;

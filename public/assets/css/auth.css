@@ -1,0 +1,110 @@
+.auth-wrapper {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    background: #020617;
+    border-radius: 0.75rem;
+    padding: 1.75rem 1.5rem 1.5rem;
+    border: 1px solid #1e293b;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.8);
+}
+
+.auth-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #cbd5f5;
+}
+
+.form-group input {
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.5rem;
+    border: 1px solid #334155;
+    background: #020617;
+    color: #e5e7eb;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.form-group input::placeholder {
+    color: #64748b;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.7);
+    background: #020617;
+}
+
+.error {
+    color: #f97373;
+    font-size: 0.85rem;
+    margin-top: 0.1rem;
+}
+
+button[type="submit"],
+.button {
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, #1d4ed8, #22c55e);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.3rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+button[type="submit"]:hover,
+.button:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+}
+
+button[type="submit"]:active,
+.button:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.auth-nav {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.auth-nav a {
+    color: #93c5fd;
+    text-decoration: none;
+}
+
+.auth-nav a:hover {
+    text-decoration: underline;
+}

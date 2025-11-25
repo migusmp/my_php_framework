@@ -1,0 +1,40 @@
+.page-dashboard h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.page-dashboard p {
+    color: #cbd5f5;
+    line-height: 1.6;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.dashboard-card {
+    background: #020617;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    border: 1px solid #1e293b;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+}
+
+.dashboard-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+}
+
+.dashboard-card p {
+    font-size: 0.9rem;
+    color: #cbd5f5;
+}
+
+.dashboard-metric {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 0.35rem;
+}

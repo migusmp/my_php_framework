@@ -1,10 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
+use App\Core\View;
+use App\Core\Validator;
 use App\Services\SessionService;
 use App\Services\UserService;
 
+/**
+ * Controlador encargado de la autenticación del usuario:
+ * registro, login y logout.
+ *
+ * Implementa una capa de validación reutilizable mediante
+ * la clase App\Core\Validator, lo que permite mantener
+ * los controladores limpios y coherentes.
+ */
 class AuthController
 {
     private UserService $userService;
@@ -12,103 +24,129 @@ class AuthController
 
     public function __construct()
     {
-        $this->userService = new UserService();
+        // Servicios principales del módulo de autenticación
+        $this->userService    = new UserService();
         $this->sessionService = new SessionService();
     }
 
     /**
-     * Muestra el formulario de Register.
-     *
-     * @param array       $errors   Errores de validación (opcional)
-     * @param string|null $oldEmail Email previamente enviado (opcional)
+     * Renderiza la vista del formulario de registro.
+     * Se usa internamente para reutilizar código.
      */
     private function renderRegister(array $errors = [], ?string $oldEmail = null): void
     {
-        // Variables que estarán disponibles en la vista
-        $errorsData = $errors;
-        $oldEmail   = $oldEmail ?? '';
-
-        require __DIR__ . '/../../../templates/register.php';
+        View::render('auth/register', [
+            'title'      => 'Registro',
+            'errorsData' => $errors,
+            'oldEmail'   => $oldEmail ?? '',
+            'styles' => ['/assets/css/auth.css'],
+        ]);
     }
 
     /**
-     * Muestra el formulario de login.
-     *
-     * @param array       $errors   Errores de validación (opcional)
-     * @param string|null $oldEmail Email previamente enviado (opcional)
+     * Renderiza la vista del login.
      */
     private function renderLogin(array $errors = [], ?string $oldEmail = null): void
     {
-        // Variables que estarán disponibles en la vista
-        $errorsData = $errors;
-        $oldEmail   = $oldEmail ?? '';
-
-        require __DIR__ . '/../../../templates/login.php';
+        View::render('auth/login', [
+            'title'      => 'Login',
+            'errorsData' => $errors,
+            'oldEmail'   => $oldEmail ?? '',
+            'styles' => ['/assets/css/auth.css'],
+        ]);
     }
 
+    // ================================================================
+    //                             REGISTER
+    // ================================================================
+
+    /** Muestra el formulario de registro */
     public function get_register(): void
     {
         $this->renderRegister();
     }
 
+    /**
+     * Procesa el formulario de registro.
+     *
+     * Flujo:
+     * 1) Validación de campos usando Validator
+     * 2) Comprobar si el usuario ya existe
+     * 3) Crear usuario
+     * 4) Crear sesión + cookie de autenticación
+     */
     public function post_register(): void
     {
-        $name = filter_input(INPUT_POST, 'name');
+        // Capturamos los valores enviados
+        $name     = \filter_input(INPUT_POST, 'name');
+        $emailRaw = \filter_input(INPUT_POST, 'email');
+        $email    = $emailRaw ? \filter_var($emailRaw, FILTER_SANITIZE_EMAIL) : null;
+        $password = \filter_input(INPUT_POST, 'password'); // no se sanea para no modificar su valor
 
-        // Obtiene y sanea el valor enviado en el campo "email" desde el formulario POST.
-        // FILTER_SANITIZE_EMAIL elimina caracteres no permitidos en una dirección de correo
-        // para reducir riesgos de inyección y asegurar un formato seguro antes de validar.
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        /**
+         * 1) VALIDACIÓN REUTILIZABLE
+         *
+         * Aquí usamos App\Core\Validator con sus reglas tipo:
+         * - required
+         * - email
+         * - min:x
+         * - max:x
+         *
+         * Esto mantiene el controlador limpio y asegura que
+         * cualquier formulario pueda usar el mismo sistema.
+         */
+        $validator = Validator::make(
+            [
+                'name'     => $name,
+                'email'    => $email,
+                'password' => $password,
+            ],
+            [
+                'name'     => 'required|min:2|max:50',
+                'email'    => 'required|email',
+                'password' => 'required|min:4',
+            ]
+        );
 
-        // Obtiene y sanea el valor enviado en el campo "password" desde el formulario POST.
-        // FILTER_SANITIZE_SPECIAL_CHARS convierte caracteres especiales en entidades HTML,
-        // evitando inyección de código (XSS) al mostrar el valor en la vista si es necesario.
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-
-        $errors = [];
-
-        if (!$email) {
-            $errors['email'] = "El campo email es obligatorio.";
-        }
-
-        if (!$name) {
-            $errors['name'] = "El campo nombre es obligatorio.";
-        } elseif (!\filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = "El email no tiene un formato válido.";
-        }
-
-        if (!$password) {
-            $errors['password'] = "El campo contraseña es obligatorio";
-        } elseif (\strlen($password) < 4) {
-            $errors['password'] = "La contraseña debe de contener al menos 4 caracteres";
-        }
-
-        if (!empty($errors)) {
+        // Si la validación falla, reenviamos los errores a la vista
+        if ($validator->fails()) {
+            $errors = $this->flattenErrors($validator->errors());
             $this->renderRegister($errors, $email);
             return;
         }
 
-        // Verificar si el usuario que se va a registrar ya existe
+        // Recuperar datos ya validados y limpios
+        $validated = $validator->validated();
+        $name      = $validated['name'];
+        $email     = $validated['email'];
+        $password  = $validated['password'];
+
+        /**
+         * 2) Verificar si el email ya existe
+         */
         if ($this->userService->findUserByEmail($email)) {
-            $errors['user'] = "Ya existe una cuenta con esa dirección de correo";
-            $this->renderRegister($errors, $email);
+            $this->renderRegister(['user' => "Ya existe una cuenta con ese correo."], $email);
             return;
         }
 
-        // 4️⃣ Hashear la contraseña
+        /**
+         * 3) Registrar usuario
+         */
         $hashedPassword = \password_hash($password, PASSWORD_BCRYPT);
 
         try {
-            // Insertar en la BBDD (asegúrate de que createUser espera ya el hash)
             $userId = $this->userService->createUser($name, $email, $hashedPassword);
 
-            // Crear sesión en BBDD
+            /**
+             * 4) Crear sesión persistente + cookie de autenticación
+             */
             $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
             $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
 
+            // Crear sesión en la BBDD y obtener token
             $token = $this->sessionService->createSession($userId, $userAgent, $ipAddress);
 
-            // Guardar el token en una cookie segura
+            // Enviar cookie segura
             \setcookie(
                 'auth_token',
                 $token,
@@ -117,11 +155,10 @@ class AuthController
                     'path'     => '/',
                     'httponly' => true,
                     'samesite' => 'Lax',
-                    // 'secure' => true, // ponlo a true cuando estés en HTTPS
                 ]
             );
 
-            // Opcional: también usar $_SESSION para acceso rápido
+            // También guardamos datos rápidos en $_SESSION
             \session_regenerate_id(true);
             $_SESSION['user'] = [
                 'id'    => $userId,
@@ -132,71 +169,82 @@ class AuthController
             \header('Location: /');
             exit;
         } catch (\Throwable $e) {
-            $errors['server'] = "Ha ocurrido un error al crear la cuenta. Inténtalo de nuevo más tarde.";
-            $this->renderRegister($errors, $email);
+            // Error inesperado al guardar en BD
+            $this->renderRegister(['server' => "Error al crear la cuenta. Inténtalo más tarde."], $email);
             return;
         }
     }
 
+    // ================================================================
+    //                               LOGIN
+    // ================================================================
+
+    /** Muestra el formulario de login */
     public function get_login(): void
     {
         $this->renderLogin();
     }
 
+    /**
+     * Procesa el formulario de login.
+     *
+     * Flujo:
+     * 1) Validación
+     * 2) Comprobar credenciales
+     * 3) Crear sesión + cookie
+     */
     public function post_login(): void
     {
-        // Obtiene y sanea el valor enviado en el campo "email" desde el formulario POST.
-        // FILTER_SANITIZE_EMAIL elimina caracteres no permitidos en una dirección de correo
-        // para reducir riesgos de inyección y asegurar un formato seguro antes de validar.
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        // Capturar datos enviados
+        $emailRaw = \filter_input(INPUT_POST, 'email');
+        $email    = $emailRaw ? \filter_var($emailRaw, FILTER_SANITIZE_EMAIL) : null;
+        $email    = $email !== null ? \trim($email) : null;
+        $password = \filter_input(INPUT_POST, 'password');
 
-        // Sanitizamos el email (formato) y eliminamos espacios laterales
-        $email = $email !== null ? trim($email) : null;
+        /**
+         * 1) VALIDACIÓN REUTILIZABLE
+         */
+        $validator = Validator::make(
+            [
+                'email'    => $email,
+                'password' => $password,
+            ],
+            [
+                'email'    => 'required|email',
+                'password' => 'required',
+            ]
+        );
 
-        // La contraseña no hace falta sanearla, no se va a mostrar, solo verificar
-        $password = filter_input(INPUT_POST, 'password');
-
-
-        $errors = [];
-
-        // Validación del email
-        if (!$email) {
-            $errors['email'] = "El email es obligatorio";
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = "El email no tiene un formato válido";
-        }
-
-        // Validación de la contraseña
-        if (!$password) {
-            $errors['password'] = "La contraseña es obligatoria";
-        }
-
-        // Si hay errores de validación de campos, volvemos a la vista
-        if (!empty($errors)) {
+        if ($validator->fails()) {
+            $errors = $this->flattenErrors($validator->errors());
             $this->renderLogin($errors, $email);
             return;
         }
 
-        // Buscar usuario en BD
+        $validated = $validator->validated();
+        $email     = $validated['email'];
+        $password  = $validated['password'];
+
+        /**
+         * 2) Buscar usuario y verificar contraseña
+         */
         $user = $this->userService->findUserByEmail($email);
 
-        // Unificamos error de credenciales (usuario o password incorrectos)
-        if (!$user || !password_verify($password, $user['password'])) {
-            $errors['verification'] = "Correo o contraseña incorrectos.";
-            $this->renderLogin($errors, $email);
+        if (!$user || !\password_verify($password, $user['password'])) {
+            // Error unificado para no revelar si el email existe
+            $this->renderLogin(['verification' => "Correo o contraseña incorrectos."], $email);
             return;
         }
 
-        // ✅ Login correcto
-
+        /**
+         * 3) Login correcto → crear sesión persistente y cookie
+         */
         $userId    = (int) $user['id'];
         $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
         $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
 
-        // Creamos sesión en tabla `sessions`
         $token = $this->sessionService->createSession($userId, $userAgent, $ipAddress);
 
-        // Cookie con el token
         \setcookie(
             'auth_token',
             $token,
@@ -205,16 +253,16 @@ class AuthController
                 'path'     => '/',
                 'httponly' => true,
                 'samesite' => 'Lax',
-                // 'secure' => true, // en HTTPS
             ]
         );
 
-        // Opcional: también sesión nativa
+        // Sesión rápida en $_SESSION
         \session_regenerate_id(true);
         $_SESSION['user'] = [
             'id'         => $userId,
             'name'       => $user['name'],
             'email'      => $user['email'],
+            'role'       => $user['role'],
             'created_at' => $user['created_at'],
         ];
 
@@ -222,11 +270,19 @@ class AuthController
         exit;
     }
 
+    // ================================================================
+    //                              LOGOUT
+    // ================================================================
+
+    /**
+     * Elimina la sesión del usuario tanto en BBDD como en navegador.
+     */
     public function logout(): void
     {
         $token = $_COOKIE['auth_token'] ?? null;
 
         if ($token) {
+            // Eliminar sesión persistente
             $this->sessionService->deleteSessionByToken($token);
 
             // Borrar cookie
@@ -242,7 +298,9 @@ class AuthController
             );
         }
 
-        // Limpiar sesión nativa
+        /**
+         * Limpiar sesión nativa completa
+         */
         $_SESSION = [];
         if (\ini_get('session.use_cookies')) {
             $params = \session_get_cookie_params();
@@ -260,5 +318,33 @@ class AuthController
 
         \header('Location: /login');
         exit;
+    }
+
+    // ================================================================
+    //                         MÉTODO AUXILIAR
+    // ================================================================
+
+    /**
+     * Aplana los errores provenientes del Validator.
+     *
+     * Ejemplo:
+     *   ['email' => ['Campo requerido', 'Formato inválido']]
+     * → ['email' => 'Campo requerido']
+     *
+     * Esto encaja con tus vistas actuales.
+     */
+    private function flattenErrors(array $errors): array
+    {
+        $out = [];
+
+        foreach ($errors as $field => $messages) {
+            if (\is_array($messages)) {
+                $out[$field] = $messages[0] ?? '';
+            } else {
+                $out[$field] = $messages;
+            }
+        }
+
+        return $out;
     }
 }

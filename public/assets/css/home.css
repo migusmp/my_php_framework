@@ -1,0 +1,39 @@
+.page-home h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.page-home p {
+    color: #cbd5f5;
+    line-height: 1.6;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.home-card {
+    background: #020617;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    border: 1px solid #1e293b;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+}
+
+.home-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-card p {
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+}
