@@ -285,8 +285,11 @@ class AuthController
         $user = $this->userService->login($email, $password);
 
         if (!$user instanceof User) {
-            Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
-            $response->redirect('/login');
+            // Ahora usamos redirect() + flash + old input
+            redirect('/login')
+                ->with('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR)
+                ->withInput($request)
+                ->send();
             return;
         }
 

@@ -137,6 +137,11 @@ final class Flash
         return $flash['message'] ?? null;
     }
 
+    public static function put(string $key, mixed $value): void
+    {
+        $_SESSION[self::SESSION_KEY][$key] = $value;
+    }
+
     // ================================================================
     //                    RENDERIZADO EN HTML (OPCIONAL)
     // ================================================================
