@@ -3,11 +3,13 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Http\Request;
 
 class HomeController
 {
-    public function index(): void
+    public function index(Request $request): void
     {
+        $request->input('tipo');
         $user = $_SESSION['user'] ?? null;
 
         View::render('home', [

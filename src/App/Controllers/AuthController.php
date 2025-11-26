@@ -7,6 +7,8 @@ namespace App\Controllers;
 use App\Core\Flash;
 use App\Core\View;
 use App\Core\Validator;
+use App\Http\Request;
+use App\Http\Response;
 use App\Services\SessionService;
 use App\Services\UserService;
 use App\Models\User;
@@ -76,7 +78,7 @@ class AuthController
     /**
      * Muestra el formulario de registro.
      */
-    public function get_register(): void
+    public function get_register(Request $request, Response $response): void
     {
         $this->renderRegister();
     }
@@ -90,14 +92,19 @@ class AuthController
      *  3) Crear usuario mediante UserService
      *  4) Crear sesión persistente + cookie de autenticación
      */
-    public function post_register(): void
+    public function post_register(Request $request, Response $response): void
     {
-        // 1) Captura de datos brutos enviados por el formulario
-        $name     = \filter_input(INPUT_POST, 'name');
-        $emailRaw = \filter_input(INPUT_POST, 'email');
-        $email    = $emailRaw ? \filter_var($emailRaw, FILTER_SANITIZE_EMAIL) : null;
+        // 1) Captura de datos enviados por el formulario
+        $nameRaw  = $request->input('name');
+        $name     = $nameRaw !== null ? \trim((string) $nameRaw) : null;
+
+        $emailRaw = $request->input('email');
+        $email    = $emailRaw !== null
+            ? \filter_var(\trim((string) $emailRaw), FILTER_SANITIZE_EMAIL)
+            : null;
+
         // La contraseña no se sanea para no alterar su valor
-        $password = \filter_input(INPUT_POST, 'password');
+        $password = $request->input('password');
 
         /**
          * 2) Validación de datos mediante el validador reutilizable.
@@ -174,8 +181,8 @@ class AuthController
          *  - Se envía dicho token en una cookie segura (httponly, samesite)
          *  - Además, se mantiene una sesión "rápida" en $_SESSION
          */
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-        $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
+        $userAgent = $request->userAgent();
+        $ipAddress = $request->ip();
 
         // Crear sesión en BBDD y obtener token
         $token = $this->sessionService->createSession($user->id, $userAgent, $ipAddress);
@@ -205,8 +212,8 @@ class AuthController
 
         Flash::add('register_success', '¡Has sido registrado con éxito!', Flash::TYPE_SUCCESS);
 
-        \header('Location: /');
-        exit;
+        // Redirección usando Response
+        $response->redirect('/');
     }
 
     // ================================================================
@@ -216,7 +223,7 @@ class AuthController
     /**
      * Muestra el formulario de login.
      */
-    public function get_login(): void
+    public function get_login(Request $request, Response $response): void
     {
         $this->renderLogin();
     }
@@ -229,13 +236,14 @@ class AuthController
      *  2) Autenticar credenciales mediante UserService::login()
      *  3) Crear sesión persistente + cookie y sesión en $_SESSION
      */
-    public function post_login(): void
+    public function post_login(Request $request, Response $response): void
     {
         // 1) Captura de datos de entrada
-        $emailRaw = \filter_input(INPUT_POST, 'email');
-        $email    = $emailRaw ? \filter_var($emailRaw, FILTER_SANITIZE_EMAIL) : null;
-        $email    = $email !== null ? \trim($email) : null;
-        $password = \filter_input(INPUT_POST, 'password');
+        $emailRaw = $request->input('email');
+        $email    = $emailRaw !== null ? \trim((string) $emailRaw) : null;
+        $email    = $email !== null ? \filter_var($email, FILTER_SANITIZE_EMAIL) : null;
+
+        $password = $request->input('password');
 
         /**
          * Validación reutilizable:
@@ -274,14 +282,15 @@ class AuthController
 
         if (!$user instanceof User) {
             Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
-            \header('Location: /login');
-            exit;
+            $response->redirect('/login');
+            return;
         }
+
         /**
          * 3) Login correcto → creación de sesión persistente + cookie.
          */
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-        $ipAddress = $_SERVER['REMOTE_ADDR']      ?? null;
+        $userAgent = $request->userAgent();
+        $ipAddress = $request->ip();
 
         $token = $this->sessionService->createSession($user->id, $userAgent, $ipAddress);
 
@@ -315,8 +324,7 @@ class AuthController
 
         Csrf::regenerateToken();
 
-        \header('Location: /');
-        exit;
+        $response->redirect('/');
     }
 
     // ================================================================
@@ -329,7 +337,7 @@ class AuthController
      *  - Elimina la cookie de autenticación
      *  - Limpia y destruye la sesión nativa de PHP
      */
-    public function logout(): void
+    public function logout(Request $request, Response $response): void
     {
         $token = $_COOKIE['auth_token'] ?? null;
 
@@ -371,8 +379,7 @@ class AuthController
 
         Csrf::regenerateToken();
 
-        \header('Location: /login');
-        exit;
+        $response->redirect('/login');
     }
 
     // ================================================================
