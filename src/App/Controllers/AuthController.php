@@ -42,33 +42,35 @@ class AuthController
     /**
      * Renderiza la vista del formulario de registro.
      *
+     * @param Response    $response Respuesta HTTP donde se volcará el HTML
      * @param array       $errors   Errores de validación (opcional)
      * @param string|null $oldEmail Email previamente enviado (opcional)
      */
-    private function renderRegister(array $errors = [], ?string $oldEmail = null): void
+    private function renderRegister(Response $response, array $errors = [], ?string $oldEmail = null): void
     {
-        View::render('auth/register', [
+        View::renderToResponse('auth/register', [
             'title'      => 'Registro',
             'errorsData' => $errors,
             'oldEmail'   => $oldEmail ?? '',
             'styles'     => ['/assets/css/auth.css'],
-        ]);
+        ], $response);
     }
 
     /**
      * Renderiza la vista del formulario de login.
      *
+     * @param Response    $response Respuesta HTTP donde se volcará el HTML
      * @param array       $errors   Errores de validación (opcional)
      * @param string|null $oldEmail Email previamente enviado (opcional)
      */
-    private function renderLogin(array $errors = [], ?string $oldEmail = null): void
+    private function renderLogin(Response $response, array $errors = [], ?string $oldEmail = null): void
     {
-        View::render('auth/login', [
+        View::renderToResponse('auth/login', [
             'title'      => 'Login',
             'errorsData' => $errors,
             'oldEmail'   => $oldEmail ?? '',
             'styles'     => ['/assets/css/auth.css'],
-        ]);
+        ], $response);
     }
 
     // ================================================================
@@ -80,7 +82,7 @@ class AuthController
      */
     public function get_register(Request $request, Response $response): void
     {
-        $this->renderRegister();
+        $this->renderRegister($response);
     }
 
     /**
@@ -130,7 +132,7 @@ class AuthController
         if ($validator->fails()) {
             // Normalizamos la estructura de errores para encajar con las vistas
             $errors = $this->flattenErrors($validator->errors());
-            $this->renderRegister($errors, $email);
+            $this->renderRegister($response, $errors, $email);
             return;
         }
 
@@ -149,6 +151,7 @@ class AuthController
         $existingUser = $this->userService->findUserByEmail($email);
         if ($existingUser instanceof User) {
             $this->renderRegister(
+                $response,
                 ['user' => 'Ya existe una cuenta con ese correo.'],
                 $email
             );
@@ -168,6 +171,7 @@ class AuthController
         } catch (\Throwable $e) {
             // En caso de error inesperado en BBDD/servicio, no exponemos detalles.
             $this->renderRegister(
+                $response,
                 ['server' => 'Error al crear la cuenta. Inténtalo de nuevo más tarde.'],
                 $email
             );
@@ -225,7 +229,7 @@ class AuthController
      */
     public function get_login(Request $request, Response $response): void
     {
-        $this->renderLogin();
+        $this->renderLogin($response);
     }
 
     /**
@@ -263,7 +267,7 @@ class AuthController
 
         if ($validator->fails()) {
             $errors = $this->flattenErrors($validator->errors());
-            $this->renderLogin($errors, $email);
+            $this->renderLogin($response, $errors, $email);
             return;
         }
 
