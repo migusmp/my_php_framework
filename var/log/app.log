@@ -1946,3 +1946,144 @@ Stack trace:
 [28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] CONSUME key=register_success
 [28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
 [28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:27:23 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:27:23 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:27:25 Europe/Madrid] [FRONT] GET /logout
+[28-Nov-2025 00:27:25 Europe/Madrid] [MIDDLEWARE] GET /logout
+[28-Nov-2025 00:27:25 Europe/Madrid] [FRONT] GET /login
+[28-Nov-2025 00:27:25 Europe/Madrid] [MIDDLEWARE] GET /login
+[28-Nov-2025 00:27:25 Europe/Madrid] [FLASH] RENDER key=login_error
+[28-Nov-2025 00:27:25 Europe/Madrid] [FLASH] CONSUME key=login_error
+[28-Nov-2025 00:27:25 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[28-Nov-2025 00:27:25 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[28-Nov-2025 00:27:27 Europe/Madrid] [FRONT] GET /register
+[28-Nov-2025 00:27:27 Europe/Madrid] [MIDDLEWARE] GET /register
+[28-Nov-2025 00:28:10 Europe/Madrid] [FRONT] POST /register
+[28-Nov-2025 00:28:10 Europe/Madrid] [MIDDLEWARE] POST /register
+[28-Nov-2025 00:28:36 Europe/Madrid] [FRONT] POST /register
+[28-Nov-2025 00:28:36 Europe/Madrid] [MIDDLEWARE] POST /register
+[28-Nov-2025 00:29:19 Europe/Madrid] [FRONT] POST /register
+[28-Nov-2025 00:29:19 Europe/Madrid] [MIDDLEWARE] POST /register
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] ADD key=register_success, type=success, message='¡Has sido registrado con éxito!'
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] SESSION_KEY creado
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [register_success] => Array
+        (
+            [message] => ¡Has sido registrado con éxito!
+            [type] => success
+        )
+
+)
+
+[28-Nov-2025 00:29:19 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] CONSUME key=register_success => Array
+(
+    [message] => ¡Has sido registrado con éxito!
+    [type] => success
+)
+
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has sido registrado con éxito!
+    [type] => success
+)
+
+[28-Nov-2025 00:29:19 Europe/Madrid] [FLASH] RENDER key=register_success => HTML generado
+[28-Nov-2025 00:29:23 Europe/Madrid] [FRONT] GET /logout
+[28-Nov-2025 00:29:23 Europe/Madrid] [MIDDLEWARE] GET /logout
+[28-Nov-2025 00:29:23 Europe/Madrid] [FRONT] GET /login
+[28-Nov-2025 00:29:23 Europe/Madrid] [MIDDLEWARE] GET /login
+[28-Nov-2025 00:29:23 Europe/Madrid] [FLASH] RENDER key=login_error
+[28-Nov-2025 00:29:23 Europe/Madrid] [FLASH] CONSUME key=login_error
+[28-Nov-2025 00:29:23 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[28-Nov-2025 00:29:23 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[28-Nov-2025 00:29:29 Europe/Madrid] [FRONT] POST /login
+[28-Nov-2025 00:29:29 Europe/Madrid] [MIDDLEWARE] POST /login
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] ADD key=login_error, type=error, message='Correo o contraseña incorrectos.'
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] SESSION_KEY creado
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_error] => Array
+        (
+            [message] => Correo o contraseña incorrectos.
+            [type] => error
+        )
+
+)
+
+[28-Nov-2025 00:29:30 Europe/Madrid] [FRONT] GET /login
+[28-Nov-2025 00:29:30 Europe/Madrid] [MIDDLEWARE] GET /login
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] RENDER key=login_error
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] CONSUME key=login_error
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] CONSUME key=login_error => Array
+(
+    [message] => Correo o contraseña incorrectos.
+    [type] => error
+)
+
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => Correo o contraseña incorrectos.
+    [type] => error
+)
+
+[28-Nov-2025 00:29:30 Europe/Madrid] [FLASH] RENDER key=login_error => HTML generado
+[28-Nov-2025 00:29:39 Europe/Madrid] [FRONT] POST /login
+[28-Nov-2025 00:29:39 Europe/Madrid] [MIDDLEWARE] POST /login
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] ADD key=login_success, type=success, message='¡Has iniciado sesión correctamente!'
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] SESSION_KEY creado
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_success] => Array
+        (
+            [message] => ¡Has iniciado sesión correctamente!
+            [type] => success
+        )
+
+)
+
+[28-Nov-2025 00:29:40 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] CONSUME key=login_success => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] RENDER key=login_success => HTML generado
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:29:40 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:29:42 Europe/Madrid] [FRONT] GET /logout
+[28-Nov-2025 00:29:42 Europe/Madrid] [MIDDLEWARE] GET /logout
+[28-Nov-2025 00:29:42 Europe/Madrid] [FRONT] GET /login
+[28-Nov-2025 00:29:42 Europe/Madrid] [MIDDLEWARE] GET /login
+[28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] RENDER key=login_error
+[28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] CONSUME key=login_error
+[28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje

@@ -115,6 +115,8 @@ class AuthController
          *  - name: requerido, longitud 2-50
          *  - email: requerido, formato email
          *  - password: requerido, mínimo 4 caracteres
+         *
+         * Con mensajes personalizados (opcional).
          */
         $validator = Validator::make(
             [
@@ -127,7 +129,20 @@ class AuthController
                 'email'    => 'required|email',
                 'password' => 'required|min:4',
             ]
-        );
+        )->setCustomMessages([
+            // Nombre
+            'name.required' => 'Por favor, indica tu nombre.',
+            'name.min'      => 'El nombre debe tener al menos 2 caracteres.',
+            'name.max'      => 'El nombre no puede superar los 50 caracteres.',
+
+            // Email
+            'email.required' => 'Por favor, indica tu correo electrónico.',
+            'email.email'    => 'El formato del correo electrónico no es válido.',
+
+            // Password
+            'password.required' => 'Por favor, indica una contraseña.',
+            'password.min'      => 'La contraseña debe tener al menos 4 caracteres.',
+        ]);
 
         if ($validator->fails()) {
             // Normalizamos la estructura de errores para encajar con las vistas
@@ -253,6 +268,8 @@ class AuthController
          * Validación reutilizable:
          *  - email: requerido, formato válido
          *  - password: requerido
+         *
+         * Con mensajes personalizados.
          */
         $validator = Validator::make(
             [
@@ -263,20 +280,24 @@ class AuthController
                 'email'    => 'required|email',
                 'password' => 'required',
             ]
-        );
+        )->setCustomMessages([
+            'email.required'    => 'Por favor, indica tu correo electrónico.',
+            'email.email'       => 'El formato del correo electrónico no es válido.',
+            'password.required' => 'Por favor, indica tu contraseña.',
+        ]);
 
         if ($validator->fails()) {
-            // Errores de validación → volvemos a login con errores
+            // Errores de validación → volvemos a login con un mensaje flash genérico
+            // (si quieres, puedes usar flattenErrors y pintar errores por campo en la vista)
             $errors = $this->flattenErrors($validator->errors());
 
-            // Si quieres seguir pintando la vista directamente:
+            // Opción A: re-renderizar directamente la vista con errores por campo:
             // $this->renderLogin($response, $errors, $email);
             // return;
 
-            // 🔥 Mucho más claro: usar flash + redirect
+            // Opción B (la que ya usas): flash + redirect (mantengo esta para no cambiar tu flujo)
             Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
 
-            // Podrías guardar el old input en sesión si quieres
             $response->redirect(url('login'));
             return;
         }
@@ -296,16 +317,6 @@ class AuthController
 
         if (!$user instanceof User) {
             // Credenciales inválidas
-
-            // Opción A: re-renderizar la vista (como tenías)
-            // $this->renderLogin(
-            //     $response,
-            //     ['login' => 'Correo o contraseña incorrectos.'],
-            //     $email
-            // );
-            // return;
-
-            // Opción B (recomendada): flash + redirect
             Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
 
             $response->redirect(url('login'));
