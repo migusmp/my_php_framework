@@ -13,18 +13,15 @@ Route::get('/about', 'AboutController@index')
 
 // GET /login → solo invitados
 Route::get('/login', 'AuthController@get_login')
-    ->middleware('guest')
-    ->name('login');
+    ->middleware('guest');
 
 // GET /register → solo invitados
 Route::get('/register', 'AuthController@get_register')
-    ->middleware('guest')
-    ->name('register');
+    ->middleware('guest');
 
 // GET /logout → solo autenticados
 Route::get('/logout', 'AuthController@logout')
-    ->middleware('auth')
-    ->name('logout');
+    ->middleware('auth');
 
 // POST /login → invitados + CSRF
 Route::post('/login', 'AuthController@post_login')
@@ -36,5 +33,4 @@ Route::post('/register', 'AuthController@post_register')
 
 // GET /dashboard → solo autenticados
 Route::get('/dashboard', 'DashboardController@index')
-    ->middleware('auth')
-    ->name('dashboard');
+    ->middleware('auth');

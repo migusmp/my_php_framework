@@ -18,6 +18,7 @@ use App\Middleware\AdminMiddleware;
 use App\Middleware\AuthMiddleware;
 use App\Middleware\CsrfMiddleware;
 use App\Middleware\GuestMiddleware;
+use App\Providers\RouteServiceProvider;
 
 // Creamos el router del "framework"
 $router = new Router();
@@ -31,17 +32,8 @@ $router->registerMiddleware('csrf', new CsrfMiddleware());
 // Lo marcamos como global para usarlo desde helpers (url())
 $router->setAsGlobal();
 
-// Cargamos todas las rutas de /routes/*.php
-foreach (glob(__DIR__ . '/../routes/*.php') as $routeFile) {
-    require $routeFile;
-}
+RouteServiceProvider::loadRoutes($router);
 
-
-// Aquí ya registras tus rutas...
-// $router->get('/login', 'AuthController@get_login')->name('login');
-// ...
-
-// Al final, haces dispatch:
 $uri    = $_SERVER['REQUEST_URI']  ?? '/';
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 

@@ -144,6 +144,15 @@ class Router
         ];
     }
 
+    /**
+     * Define un prefijo "fluido" para las siguientes rutas,
+     * por ejemplo:
+     *
+     *   $router->prefix('admin')->get('/dashboard', ...);
+     *
+     * Se puede anidar con grupos, pero para cosas complejas
+     * es mejor usar group() con array de opciones.
+     */
     public function prefix(string $prefix): self
     {
         $normalized = trim($prefix, '/');
@@ -160,15 +169,55 @@ class Router
 
         return $this;
     }
-
-    public function group(string $prefix, callable $callback, array $middleware = []): void
+    /**
+     * Agrupa rutas con un prefijo y/o middlewares comunes.
+     *
+     * Formato "nuevo" tipo Laravel:
+     *
+     *   $router->group([
+     *       'prefix'     => 'admin',
+     *       'middleware' => ['auth', 'is_admin'],
+     *   ], function (Router $router) {
+     *       $router->get('/dashboard', 'AdminController@index');
+     *       $router->get('/users', 'AdminController@users');
+     *   });
+     *
+     * Mantiene compatibilidad con el formato antiguo:
+     *
+     *   $router->group('/admin', function (Router $r) {
+     *       $r->get('/dashboard', 'AdminController@index');
+     *   }, ['auth']);
+     */
+    public function group(string|array $prefixOrOptions, callable $callback, array $middleware = []): void
     {
+        // Guardamos el contexto anterior para restaurarlo al salir
         $parentPrefix      = $this->currentPrefix;
         $parentMiddlewares = $this->currentGroupMiddlewares;
 
+        // -------------------------
+        // Normalizar parámetros
+        // -------------------------
+        $prefix          = '';
+        $extraMiddleware = $middleware;
+
+        if (\is_array($prefixOrOptions)) {
+            // Nuevo formato: ['prefix' => '...', 'middleware' => [...]]
+            $prefix = $prefixOrOptions['prefix'] ?? '';
+            if (isset($prefixOrOptions['middleware'])) {
+                $extraMiddleware = (array) $prefixOrOptions['middleware'];
+            }
+        } else {
+            // Formato antiguo: group('/admin', callback, ['auth'])
+            $prefix = $prefixOrOptions;
+        }
+
+        // -------------------------
+        // Calcular nuevo prefijo
+        // -------------------------
         $normalizedPrefix = trim($prefix, '/');
 
         if ($normalizedPrefix === '') {
+            // Si no hay prefijo nuevo, mantenemos el del padre
             $this->currentPrefix = $parentPrefix;
         } else {
             if ($parentPrefix === '') {
@@ -178,12 +227,25 @@ class Router
             }
         }
 
-        $this->currentGroupMiddlewares = \array_merge($parentMiddlewares, $middleware);
+        // Middlewares del grupo = middlewares del padre + extra de este grupo
+        $this->currentGroupMiddlewares = \array_values(\array_unique(\array_merge(
+            $parentMiddlewares,
+            (array) $extraMiddleware
+        )));
 
+        // Ejecutamos el callback dentro del contexto del grupo
         $callback($this);
 
+        // Restauramos el contexto anterior (para que el grupo no “contamine” fuera)
         $this->currentPrefix           = $parentPrefix;
         $this->currentGroupMiddlewares = $parentMiddlewares;
+    }
+
+    public function groupFile(string|array $options, string $file): void
+    {
+        $this->group($options, function () use ($file) {
+            require $file;
+        });
     }
 
     // ================================================================
@@ -318,6 +380,27 @@ class Router
         ];
 
         $this->currentMiddleware = [];
+
+        // Auto-naming de ruta si no tiene nombre explícito
+        if ($this->routes[$method][$fullPath]['name'] === null) {
+            // /admin/users/create -> admin.users.create
+            $auto = \str_replace('/', '.', \trim($fullPath, '/'));
+
+            if ($auto === '') {
+                // Para la raíz "/" algo tipo "get.root" o lo que prefieras
+                $auto = \strtolower($method) . '.root';
+            }
+
+            // No pisar nombres ya existentes
+            if (!isset($this->namedRoutes[$auto])) {
+                $this->routes[$method][$fullPath]['name'] = $auto;
+                $this->namedRoutes[$auto] = [
+                    'method' => $method,
+                    'path'   => $fullPath,
+                ];
+            }
+        }
+
 
         return $fullPath;
     }

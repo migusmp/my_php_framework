@@ -19,9 +19,14 @@ final class Route
         return Router::getInstance()->prefix($prefix);
     }
 
-    public static function group(string $prefix, callable $callback, array $middleware = []): void
+    public static function group(string|array $prefixOrOptions, callable $callback, array $middleware = []): void
     {
-        Router::getInstance()->group($prefix, $callback, $middleware);
+        Router::getInstance()->group($prefixOrOptions, $callback, $middleware);
+    }
+
+    public static function groupFile(string|array $options, string $file): void
+    {
+        Router::getInstance()->groupFile($options, $file);
     }
 
     public static function get(string $path, callable|array|string $handler): RouteDefinition

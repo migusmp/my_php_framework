@@ -1,11 +1,15 @@
 <?php
 
+use App\Core\Route;
 use App\Controllers\AdminController;
-use App\Core\Router;
 
-$router->group('/admin', function (Router $r) {
-    $r->get('/dashboard', [AdminController::class, 'dashboard']);
-    $r->get('/users', [AdminController::class, 'users']);
-    $r->post('/users/create', [AdminController::class, 'create_user']);
+Route::group([
+    'prefix'     => 'admin',
+    'middleware' => ['auth', 'admin'],
+], function () {
 
-}, ['auth', 'admin']);
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::post('/users/create', [AdminController::class, 'create_user'])->name('admin.users.create');
+
+});
