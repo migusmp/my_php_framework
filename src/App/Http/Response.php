@@ -107,13 +107,69 @@ final class Response
      *
      * @param mixed $data Datos que se convertirán a JSON.
      */
-    public function json(mixed $data, int $statusCode = 200): self
-    {
+    public function json(
+        mixed $data,
+        int $statusCode = 200,
+        int $jsonOptions = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES,
+    ): self {
         $this->setStatus($statusCode);
         $this->header('Content-Type', 'application/json; charset=utf-8');
-        $this->content = \json_encode($data, JSON_UNESCAPED_UNICODE);
+
+        try {
+            $this->content = \json_encode(
+                $data,
+                $jsonOptions | JSON_THROW_ON_ERROR
+            );
+        } catch (\JsonException $e) {
+            // Fallback en caso de error de codificación
+            $this->setStatus(500);
+            $this->content = \json_encode([
+                'error'   => 'JSON_ENCODING_ERROR',
+                'message' => $e->getMessage(),
+            ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
 
         return $this;
+    }
+
+    public function apiJson(
+        mixed $data = null,
+        ?string $message = null,
+        int $statusCode = 200
+    ): self {
+        $payload = [
+            'status'  => $statusCode,
+            'success' => $statusCode >= 200 && $statusCode < 300,
+            'message' => $message,
+            'data'    => $data,
+        ];
+
+        return $this->json($payload, $statusCode);
+    }
+
+    public static function jsonResponse(mixed $data, int $status = 200): self
+    {
+        return (new self())->json($data, $status);
+    }
+
+    public static function api(mixed $data = null, ?string $message = null, int $status = 200): self
+    {
+        return (new self())->apiJson($data, $message, $status);
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    public static function notFound(string $message = 'Not Found'): self
+    {
+        return self::status(404)->setContent($message);
+    }
+
+    public static function noContent(): self
+    {
+        return self::status(204);
     }
 
     /**

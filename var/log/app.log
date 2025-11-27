@@ -1844,3 +1844,105 @@ Stack trace:
 [27-Nov-2025 23:51:23 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1
 [27-Nov-2025 23:51:26 Europe/Madrid] [FRONT] GET /admin/users
 [27-Nov-2025 23:51:26 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:54:56 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:54:56 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:54:57 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:54:57 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:55:00 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:55:00 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:55:04 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:55:04 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:55:06 Europe/Madrid] [FRONT] GET /admin/users/1/edit
+[27-Nov-2025 23:55:06 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1/edit
+[27-Nov-2025 23:55:08 Europe/Madrid] [FRONT] POST /admin/users/1
+[27-Nov-2025 23:55:08 Europe/Madrid] [MIDDLEWARE] PUT /admin/users/1
+[27-Nov-2025 23:55:11 Europe/Madrid] [FRONT] GET /admin/users/1/edit
+[27-Nov-2025 23:55:11 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1/edit
+[28-Nov-2025 00:08:55 Europe/Madrid] [FRONT] GET /admin/users/1/edit
+[28-Nov-2025 00:08:55 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1/edit
+[28-Nov-2025 00:08:57 Europe/Madrid] [FRONT] GET /admin/users/1/edit
+[28-Nov-2025 00:08:57 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1/edit
+[28-Nov-2025 00:08:59 Europe/Madrid] [FRONT] GET /admin/users
+[28-Nov-2025 00:08:59 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[28-Nov-2025 00:08:59 Europe/Madrid] [FRONT] GET /admin/users/create
+[28-Nov-2025 00:08:59 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[28-Nov-2025 00:09:00 Europe/Madrid] [FRONT] GET /admin/users
+[28-Nov-2025 00:09:00 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[28-Nov-2025 00:09:04 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:09:04 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:09:06 Europe/Madrid] [FRONT] GET /product/123
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:09:06 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:09:08 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:09:08 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:09:09 Europe/Madrid] [FRONT] GET /dashboard
+[28-Nov-2025 00:09:09 Europe/Madrid] [MIDDLEWARE] GET /dashboard
+[28-Nov-2025 00:09:11 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:09:11 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:09:49 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:09:49 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:09:50 Europe/Madrid] [FRONT] GET /dashboard
+[28-Nov-2025 00:09:50 Europe/Madrid] [MIDDLEWARE] GET /dashboard
+[28-Nov-2025 00:09:52 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:09:52 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:10:03 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:10:03 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[28-Nov-2025 00:10:04 Europe/Madrid] [FRONT] GET /dashboard
+[28-Nov-2025 00:10:04 Europe/Madrid] [MIDDLEWARE] GET /dashboard
+[28-Nov-2025 00:10:05 Europe/Madrid] [FRONT] GET /
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] RENDER key=login_success
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] CONSUME key=login_success
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] RENDER key=register_success
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] CONSUME key=register_success
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[28-Nov-2025 00:10:05 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
