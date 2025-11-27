@@ -1512,3 +1512,335 @@ Stack trace:
 [27-Nov-2025 23:08:45 Europe/Madrid] [FLASH] CONSUME key=login_error
 [27-Nov-2025 23:08:45 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
 [27-Nov-2025 23:08:45 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:15:16 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:15:16 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:15:16 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:15:16 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:15:16 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:16:21 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] ADD key=login_success, type=success, message='¡Has iniciado sesión correctamente!'
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_success] => Array
+        (
+            [message] => ¡Has iniciado sesión correctamente!
+            [type] => success
+        )
+
+)
+
+[27-Nov-2025 23:16:21 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] CONSUME key=login_success => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] RENDER key=login_success => HTML generado
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:16:21 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:16:35 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:16:37 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:16:37 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:16:39 Europe/Madrid] [FRONT] GET /product/123
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:16:39 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:16:42 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:16:42 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:16:42 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:16:49 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:16:51 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:16:51 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:16:53 Europe/Madrid] [FRONT] GET /logout
+[27-Nov-2025 23:16:53 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:16:53 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:16:53 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:16:53 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:16:53 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:16:55 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:16:55 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:16:55 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:16:55 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:16:55 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:16:59 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:16:59 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:17:00 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:17:00 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:17:00 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:17:00 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:17:00 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:17:07 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:17:07 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:17:07 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:17:07 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:17:07 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:17:07 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:24:25 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:24:25 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:24:25 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:24:25 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:24:25 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:29:05 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:29:05 Europe/Madrid] [MIDDLEWARE] GET /login
+[27-Nov-2025 23:29:05 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:29:05 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:29:05 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 23:29:05 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 23:29:34 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 23:29:34 Europe/Madrid] [MIDDLEWARE] POST /login
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] ADD key=login_error, type=error, message='Correo o contraseña incorrectos.'
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_error] => Array
+        (
+            [message] => Correo o contraseña incorrectos.
+            [type] => error
+        )
+
+)
+
+[27-Nov-2025 23:29:34 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 23:29:34 Europe/Madrid] [MIDDLEWARE] GET /login
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] CONSUME key=login_error => Array
+(
+    [message] => Correo o contraseña incorrectos.
+    [type] => error
+)
+
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => Correo o contraseña incorrectos.
+    [type] => error
+)
+
+[27-Nov-2025 23:29:34 Europe/Madrid] [FLASH] RENDER key=login_error => HTML generado
+[27-Nov-2025 23:29:41 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 23:29:41 Europe/Madrid] [MIDDLEWARE] POST /login
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] ADD key=login_success, type=success, message='¡Has iniciado sesión correctamente!'
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_success] => Array
+        (
+            [message] => ¡Has iniciado sesión correctamente!
+            [type] => success
+        )
+
+)
+
+[27-Nov-2025 23:29:42 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] CONSUME key=login_success => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] RENDER key=login_success => HTML generado
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:29:42 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:29:49 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:30:25 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:30:25 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:30:25 Europe/Madrid] PHP Fatal error:  Uncaught RuntimeException: La vista 'admin/users/index' no existe en /home/migus/workspace/php/php-vanilla-server/src/App/Core/../../Views/admin/users/index.php in /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php:55
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(36): App\Core\View::renderToString()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AdminUserController.php(23): App\Core\View::render()
+#2 [internal function]: App\Controllers\AdminUserController->index()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(616): ReflectionMethod->invokeArgs()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/AdminMiddleware.php(45): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#5 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(658): App\Middleware\AdminMiddleware->__invoke()
+#6 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/AuthMiddleware.php(25): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#7 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(656): App\Middleware\AuthMiddleware->__invoke()
+#8 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#9 /home/migus/workspace/php/php-vanilla-server/public/index.php(42): App\Core\Router->dispatch()
+#10 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php on line 55
+[27-Nov-2025 23:30:29 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:30:38 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:30:57 Europe/Madrid] [FRONT] GET /admin/admin/dashboard
+[27-Nov-2025 23:30:57 Europe/Madrid] [MIDDLEWARE] GET /admin/admin/dashboard
+[27-Nov-2025 23:31:00 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 23:32:09 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:32:09 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:32:14 Europe/Madrid] [FRONT] GET /about
+[27-Nov-2025 23:32:14 Europe/Madrid] PHP Fatal error:  Uncaught RuntimeException: La vista 'pages/about' no existe en /home/migus/workspace/php/php-vanilla-server/src/App/Core/../../Views/pages/about.php in /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php:55
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(36): App\Core\View::renderToString()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Route.php(91): App\Core\View::render()
+#2 [internal function]: App\Core\Route::{closure:App\Core\Route::view():90}()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(624): ReflectionFunction->invokeArgs()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#5 /home/migus/workspace/php/php-vanilla-server/public/index.php(42): App\Core\Router->dispatch()
+#6 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php on line 55
+[27-Nov-2025 23:33:53 Europe/Madrid] [FRONT] GET /about
+[27-Nov-2025 23:33:57 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:33:57 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:35:09 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:35:09 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:35:11 Europe/Madrid] [FRONT] GET /about
+[27-Nov-2025 23:35:13 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:35:13 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:35:14 Europe/Madrid] [FRONT] GET /about
+[27-Nov-2025 23:35:18 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:35:18 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:35:21 Europe/Madrid] [FRONT] GET /about
+[27-Nov-2025 23:35:23 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 23:35:23 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 23:48:06 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:48:06 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:48:13 Europe/Madrid] [FRONT] GET /admin/create
+[27-Nov-2025 23:48:55 Europe/Madrid] [FRONT] GET /admin/create
+[27-Nov-2025 23:49:15 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:49:15 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:49:18 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:49:18 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:49:21 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:49:21 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:49:22 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:49:22 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:49:23 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:49:23 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:49:25 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:49:25 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:49:26 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:49:26 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:49:27 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:49:27 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:49:31 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:49:31 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:49:32 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:49:32 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:49:33 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:49:33 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:49:34 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:49:34 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:50:52 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:50:52 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:50:54 Europe/Madrid] [FRONT] GET /admin/users/1
+[27-Nov-2025 23:50:54 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1
+[27-Nov-2025 23:50:57 Europe/Madrid] [FRONT] GET /admin/users/1/edit
+[27-Nov-2025 23:50:57 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1/edit
+[27-Nov-2025 23:51:00 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:51:00 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:51:01 Europe/Madrid] [FRONT] GET /admin/users/create
+[27-Nov-2025 23:51:01 Europe/Madrid] [MIDDLEWARE] GET /admin/users/create
+[27-Nov-2025 23:51:02 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:51:02 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:51:03 Europe/Madrid] [FRONT] GET /admin/users/2/edit
+[27-Nov-2025 23:51:03 Europe/Madrid] [MIDDLEWARE] GET /admin/users/2/edit
+[27-Nov-2025 23:51:05 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:51:05 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:51:06 Europe/Madrid] [FRONT] GET /admin/users/2
+[27-Nov-2025 23:51:06 Europe/Madrid] [MIDDLEWARE] GET /admin/users/2
+[27-Nov-2025 23:51:07 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:51:07 Europe/Madrid] [MIDDLEWARE] GET /admin/users
+[27-Nov-2025 23:51:20 Europe/Madrid] [FRONT] GET /admin/users/1/edit
+[27-Nov-2025 23:51:20 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1/edit
+[27-Nov-2025 23:51:23 Europe/Madrid] [FRONT] GET /admin/users/1
+[27-Nov-2025 23:51:23 Europe/Madrid] [MIDDLEWARE] GET /admin/users/1
+[27-Nov-2025 23:51:26 Europe/Madrid] [FRONT] GET /admin/users
+[27-Nov-2025 23:51:26 Europe/Madrid] [MIDDLEWARE] GET /admin/users

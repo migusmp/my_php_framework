@@ -401,7 +401,6 @@ class Router
             }
         }
 
-
         return $fullPath;
     }
 
@@ -640,8 +639,28 @@ class Router
 
             $next = $runner;
 
-            $runner = function () use ($mw, $next) {
-                $mw($next);
+            $runner = function () use ($mw, $next, $request, $response) {
+                // Soportar middlewares que aceptan:
+                //  - function (callable $next)
+                //  - function (Request $request, Response $response, callable $next)
+                try {
+                    if (\is_array($mw) && \count($mw) === 2) {
+                        $ref = new \ReflectionMethod($mw[0], $mw[1]);
+                    } else {
+                        $ref = new \ReflectionFunction(\Closure::fromCallable($mw));
+                    }
+
+                    $paramCount = $ref->getNumberOfParameters();
+
+                    if ($paramCount >= 3) {
+                        $mw($request, $response, $next);
+                    } else {
+                        $mw($next);
+                    }
+                } catch (\ReflectionException $e) {
+                    // Si falla la reflexión, caer al comportamiento sencillo
+                    $mw($next);
+                }
             };
         }
 

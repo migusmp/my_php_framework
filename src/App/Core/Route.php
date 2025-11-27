@@ -53,4 +53,42 @@ final class Route
     {
         return Router::getInstance()->delete($path, $handler);
     }
+
+    public static function resource(string $name, string $controller): void
+    {
+        // index
+        self::get("/{$name}", [$controller, 'index'])
+            ->name("{$name}.index");
+
+        // create
+        self::get("/{$name}/create", [$controller, 'create'])
+            ->name("{$name}.create");
+
+        // store
+        self::post("/{$name}", [$controller, 'store'])
+            ->name("{$name}.store");
+
+        // show
+        self::get("/{$name}/{id}", [$controller, 'show'])
+            ->name("{$name}.show");
+
+        // edit
+        self::get("/{$name}/{id}/edit", [$controller, 'edit'])
+            ->name("{$name}.edit");
+
+        // update
+        self::put("/{$name}/{id}", [$controller, 'update'])
+            ->name("{$name}.update");
+
+        // destroy
+        self::delete("/{$name}/{id}", [$controller, 'destroy'])
+            ->name("{$name}.destroy");
+    }
+
+    public static function view(string $uri, string $view, array $data = []): RouteDefinition
+    {
+        return Router::getInstance()->get($uri, function () use ($view, $data) {
+            \App\Core\View::render($view, $data);
+        });
+    }
 }

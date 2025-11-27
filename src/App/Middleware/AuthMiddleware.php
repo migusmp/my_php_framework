@@ -3,25 +3,25 @@
 namespace App\Middleware;
 
 use App\Core\Auth;
+use App\Http\Request;
+use App\Http\Response;
 
 class AuthMiddleware
 {
-    public function __invoke(callable $next): void
+    public function __invoke(Request $request, Response $response, callable $next): void
     {
-        error_log('===== [MIDDLEWARE] AuthMiddleware ENTER =====');
-        error_log('[MIDDLEWARE][Auth] SESSION=' . print_r($_SESSION, true));
+        $path   = $request->path();
+        $method = $request->method();
+
+        error_log(sprintf('[MIDDLEWARE] %s %s', $method, $path));
 
         $user = Auth::user();
-        error_log('[MIDDLEWARE][Auth] Auth::user() => ' . var_export($user, true));
 
         if ($user === null) {
-            error_log('[MIDDLEWARE][Auth] Usuario NO autenticado, redirect /login');
             \header('Location: /login');
             exit;
         }
 
-        error_log('[MIDDLEWARE][Auth] Usuario autenticado, continuando...');
         $next();
-        error_log('===== [MIDDLEWARE] AuthMiddleware EXIT =====');
     }
 }

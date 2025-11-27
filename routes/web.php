@@ -8,7 +8,8 @@ Route::get('/', 'HomeController@index')
 Route::get('/product/{id}', 'HomeController@show')
     ->name('product.show');
 
-Route::get('/about', 'AboutController@index')
+// Página estática “about”
+Route::view('/about', 'pages/about', ['title' => 'Sobre nosotros'])
     ->name('about');
 
 // GET /login → solo invitados

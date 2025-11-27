@@ -9,14 +9,17 @@ class RouteServiceProvider
     public static function loadRoutes(Router $router): void
     {
         // 📁 Ruta correcta a la carpeta /routes (subimos 3 niveles desde src/App/Providers)
-        $routesPath = dirname(__DIR__, 3) . '/routes';
+        $routesPath = \dirname(__DIR__, 3) . '/routes';
 
         if (!\is_dir($routesPath)) {
             throw new \RuntimeException("Carpeta de rutas no encontrada: {$routesPath}");
         }
 
+        $loadedRealPaths = [];
+
         // --------------------------------------------
         // 1) Archivos con prioridad, si existen
+        //    (web.php, api.php, auth.php, admin.php)
         // --------------------------------------------
         $ordered = [
             $routesPath . '/web.php',
@@ -24,8 +27,6 @@ class RouteServiceProvider
             $routesPath . '/auth.php',
             $routesPath . '/admin.php',
         ];
-
-        $loadedRealPaths = [];
 
         foreach ($ordered as $file) {
             if (\is_file($file)) {
@@ -80,8 +81,7 @@ class RouteServiceProvider
                 continue;
             }
 
-            // Opcional: si quieres excluir los que están justo en /routes (ya tratados),
-            // comprobamos que estén en subcarpetas:
+            // Excluir los que están justo en /routes (ya tratados)
             if (\dirname($real) === $rootReal) {
                 continue;
             }

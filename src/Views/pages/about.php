@@ -1,7 +1,6 @@
 <?php
-// templates/pages/about.php
+// src/Views/pages/about.php
 ?>
-
 <h1><?= htmlspecialchars($title ?? 'Sobre nosotros') ?></h1>
 
 <p>
@@ -31,17 +30,3 @@
     </ul>
 </section>
 
-<section style="margin-top: 1.5rem;">
-    <h2>Objetivo del proyecto</h2>
-    <p>
-        Crear un framework propio, ligero, rápido y totalmente comprensible,
-        que permita aprender cómo funcionan los grandes frameworks por dentro,
-        pero manteniendo control total sobre cada componente.
-    </p>
-</section>
-
-<section style="margin-top: 2rem; padding: 1rem; background: #f0f0f0; border-radius: 8px;">
-    <p>
-        Si quieres ver más páginas como esta, revisa las rutas en <code>routes/web.php</code>.
-    </p>
-</section>

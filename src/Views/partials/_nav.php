@@ -5,6 +5,7 @@
     <a href="/">Inicio</a>
     <?php if (!empty($user)): ?>
         <a href="/dashboard">Dashboard</a>
+    <a href="<?= url('about') ?>">About</a>
     <a href="<?= url('logout') ?>">Cerrar sesión (<?= htmlspecialchars($user['name'] ?? '') ?>)</a>
     <?php else: ?>
         <a href="/login">Iniciar sesión</a>
