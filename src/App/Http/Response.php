@@ -139,19 +139,21 @@ final class Response
      */
     public function send(): void
     {
+        // Evitamos reenvíos
         if ($this->sent) {
             return;
         }
 
-        // Código de estado
-        http_response_code($this->statusCode);
+        // Si aún no se han enviado cabeceras, las mandamos
+        if (!headers_sent()) {
+            http_response_code($this->statusCode);
 
-        // Cabeceras
-        foreach ($this->headers as $name => $data) {
-            \header($name . ': ' . $data['value'], $data['replace']);
+            foreach ($this->headers as $name => $data) {
+                header($name . ': ' . $data['value'], $data['replace']);
+            }
         }
 
-        // Contenido
+        // Enviamos el cuerpo (en redirect será el HTML de "Redirecting...")
         echo $this->content;
 
         $this->sent = true;
@@ -164,4 +166,75 @@ final class Response
     {
         return $this->sent;
     }
+
+
+    /*
+     * Devuelve una vista
+     * return Response::view('login')
+     */
+    public static function view(string $view, array $data = [], int $status = 200): self
+    {
+        $html = \App\Core\View::renderToString($view, $data);
+
+        return (new self())
+            ->setStatus($status)
+            ->header('Content-Type', 'text/html; charset=utf-8')
+            ->setContent($html);
+    }
+
+    /*
+     *
+     * return Response::redirectTo('/');
+     */
+    public static function redirectTo(string $url, int $status = 302): self
+    {
+        return (new self())->redirect($url, $status);
+    }
+
+    /*
+    * Response::json_response($data, 200);
+    */
+    public static function json_response(mixed $data, int $status = 200): self
+    {
+        return (new self())->json($data, $status);
+    }
+
+    /*
+    * Response::status(404)->view('errors/404');
+    */
+    public static function status(int $code): self
+    {
+        return (new self())->setStatus($code);
+    }
+
+    /*
+    * Soporte para descarga de archivos
+    */
+    public static function download(string $filePath, ?string $filename = null): self
+    {
+        if (!\file_exists($filePath)) {
+            return self::status(404)->setContent('File not found');
+        }
+
+        $filename ??= \basename($filePath);
+
+        $response = new self();
+        $response->header('Content-Type', 'application/octet-stream');
+        $response->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
+        $response->setContent(\file_get_contents($filePath));
+
+        return $response;
+    }
+
+    /*
+    * Método para que un middleware pueda resetear la respuesta si lo requiere
+    */
+    public function clear(): self
+    {
+        $this->statusCode = 200;
+        $this->headers = [];
+        $this->content = '';
+        return $this;
+    }
+
 }

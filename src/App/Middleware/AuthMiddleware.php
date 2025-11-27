@@ -8,13 +8,20 @@ class AuthMiddleware
 {
     public function __invoke(callable $next): void
     {
-        // Si no hay usuario autenticado, redirigimos al login
-        if (Auth::user() === null) {
+        error_log('===== [MIDDLEWARE] AuthMiddleware ENTER =====');
+        error_log('[MIDDLEWARE][Auth] SESSION=' . print_r($_SESSION, true));
+
+        $user = Auth::user();
+        error_log('[MIDDLEWARE][Auth] Auth::user() => ' . var_export($user, true));
+
+        if ($user === null) {
+            error_log('[MIDDLEWARE][Auth] Usuario NO autenticado, redirect /login');
             \header('Location: /login');
             exit;
         }
 
-        // Si hay usuario, seguimos con la ejecución
+        error_log('[MIDDLEWARE][Auth] Usuario autenticado, continuando...');
         $next();
+        error_log('===== [MIDDLEWARE] AuthMiddleware EXIT =====');
     }
 }

@@ -1,0 +1,936 @@
+[27-Nov-2025 19:31:41 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:31:41 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:31:41 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:31:41 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:31:47 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 19:31:47 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => 01b4d8ea20413c9e770c83d7ac0b929c74009780ff32780f347a0da4c740a476
+)
+
+[27-Nov-2025 19:31:47 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => NULL
+[27-Nov-2025 19:31:47 Europe/Madrid] [MIDDLEWARE][Auth] Usuario NO autenticado, redirect /login
+[27-Nov-2025 19:31:47 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:31:47 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:31:47 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:31:47 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:37:52 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:37:52 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:37:52 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:37:52 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:38:10 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 19:38:10 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => 01b4d8ea20413c9e770c83d7ac0b929c74009780ff32780f347a0da4c740a476
+)
+
+[27-Nov-2025 19:38:10 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => NULL
+[27-Nov-2025 19:38:10 Europe/Madrid] [MIDDLEWARE][Auth] Usuario NO autenticado, redirect /login
+[27-Nov-2025 19:38:10 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:38:10 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:38:10 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:38:10 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:38:38 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:38:38 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:38:38 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:38:38 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:38:47 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 19:38:47 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => 01b4d8ea20413c9e770c83d7ac0b929c74009780ff32780f347a0da4c740a476
+)
+
+[27-Nov-2025 19:38:47 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => NULL
+[27-Nov-2025 19:38:47 Europe/Madrid] [MIDDLEWARE][Auth] Usuario NO autenticado, redirect /login
+[27-Nov-2025 19:38:47 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:38:47 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:38:47 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:38:47 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:42:30 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 19:42:30 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:42:30 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:42:30 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:42:30 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:42:36 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 19:42:36 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 19:42:36 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => 01b4d8ea20413c9e770c83d7ac0b929c74009780ff32780f347a0da4c740a476
+)
+
+[27-Nov-2025 19:42:36 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => NULL
+[27-Nov-2025 19:42:36 Europe/Madrid] [MIDDLEWARE][Auth] Usuario NO autenticado, redirect /login
+[27-Nov-2025 19:42:36 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 19:42:36 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:42:36 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:42:36 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:42:36 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:49:01 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 19:49:01 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:49:01 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:49:01 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:49:01 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 19:49:02 Europe/Madrid] [FRONT] GET /favicon.ico
+[27-Nov-2025 19:49:08 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 19:49:08 Europe/Madrid] ======================
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] POST /login INICIO
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] $_POST = Array
+(
+    [_token] => 01b4d8ea20413c9e770c83d7ac0b929c74009780ff32780f347a0da4c740a476
+    [email] => paco@example.com
+    [password] => 1234
+)
+
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] emailRaw='paco@example.com'
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] email='paco@example.com'
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] password='1234'
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] Validator -> OK
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] validated email=paco@example.com
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] userService->login() => OK, user id=1
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] userAgent='Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0'
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] ipAddress='::1'
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] createSession() token='2c92dd515569a3405ce6e4044871d1302799fcea704a1dde9c7458d468449021'
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] Cookie auth_token seteada
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] $_SESSION[user] = Array
+(
+    [id] => 1
+    [name] => paco martínez
+    [email] => paco@example.com
+    [role] => user
+    [created_at] => 2025-11-24 21:22:07
+)
+
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] ADD key=login_success, type=success, message='¡Has iniciado sesión correctamente!'
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_success] => Array
+        (
+            [message] => ¡Has iniciado sesión correctamente!
+            [type] => success
+        )
+
+)
+
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] Flash::add(login_success, ...) llamado
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] Csrf::regenerateToken() llamado
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] redirect a url("index") = /
+[27-Nov-2025 19:49:08 Europe/Madrid] [LOGIN] FIN post_login (return)
+[27-Nov-2025 19:49:08 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] CONSUME key=login_success => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] RENDER key=login_success => HTML generado
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 19:49:08 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 19:49:11 Europe/Madrid] [FRONT] GET /product/123
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 19:49:11 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 19:49:12 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 19:49:12 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 19:49:13 Europe/Madrid] [FRONT] GET /logout
+[27-Nov-2025 19:49:13 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 19:49:13 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ac4dbedbff697fc0020328239f8e7914fc991fb8471ae6aded7a225c6c029fb5
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 19:49:13 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 19:49:13 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 19:49:13 Europe/Madrid] PHP Fatal error:  Uncaught RuntimeException: Método logout no existe en App\Controllers\AuthController in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:624
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/AuthMiddleware.php(24): App\Core\Router->{closure:App\Core\Router::dispatch():568}()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(669): App\Middleware\AuthMiddleware->__invoke()
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(674): App\Core\Router->{closure:App\Core\Router::dispatch():668}()
+#3 /home/migus/workspace/php/php-vanilla-server/public/index.php(50): App\Core\Router->dispatch()
+#4 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 624
+[27-Nov-2025 19:49:20 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 19:49:20 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 19:50:25 Europe/Madrid] [FRONT] GET /logout
+[27-Nov-2025 19:50:25 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 19:50:25 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ac4dbedbff697fc0020328239f8e7914fc991fb8471ae6aded7a225c6c029fb5
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 19:50:25 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 19:50:25 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 19:50:25 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 19:50:25 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 19:50:25 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 19:50:25 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 19:50:25 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 19:50:25 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 20:05:21 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:05:21 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 20:05:21 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 20:05:21 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 20:05:21 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 20:05:21 Europe/Madrid] [FRONT] GET /favicon.ico
+[27-Nov-2025 20:05:28 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] ADD key=login_success, type=success, message='¡Has iniciado sesión correctamente!'
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_success] => Array
+        (
+            [message] => ¡Has iniciado sesión correctamente!
+            [type] => success
+        )
+
+)
+
+[27-Nov-2025 20:05:28 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] CONSUME key=login_success => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] RENDER key=login_success => HTML generado
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:05:28 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:05:31 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:05:31 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:05:31 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:05:31 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:05:31 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:05:31 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:05:32 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:05:32 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:05:38 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 20:05:38 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:05:38 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:05:38 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:05:38 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:05:40 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:05:40 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:05:42 Europe/Madrid] [FRONT] GET /product/123
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:05:42 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:05:46 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:05:46 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:05:46 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:08:51 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:08:52 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:08:57 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:08:57 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:08:59 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:09:00 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:09:01 Europe/Madrid] PHP Fatal error:  Uncaught TypeError: App\Core\Router::group(): Argument #2 ($callback) must be of type callable, array given, called in /home/migus/workspace/php/php-vanilla-server/routes/admin.php on line 6 and defined in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:164
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/routes/admin.php(6): App\Core\Router->group()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(36): require('...')
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 164
+[27-Nov-2025 20:10:47 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:10:47 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:10:56 Europe/Madrid] [FRONT] GET /admin/dashboard
+[27-Nov-2025 20:10:56 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:10:56 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:10:56 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:10:56 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:10:58 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:10:58 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:11:01 Europe/Madrid] [FRONT] GET /product/123
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:11:01 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:11:05 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:11:05 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:11:07 Europe/Madrid] [FRONT] GET /product/123
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:11:07 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:11:08 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:11:08 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:12:04 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:12:04 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:12:04 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:12:04 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:12:04 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:12:04 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:12:05 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:12:05 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:12:07 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:12:07 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:12:07 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:12:07 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:12:07 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:12:07 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:12:08 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:12:08 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:12:08 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:12:08 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:12:08 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:12:08 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:12:08 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:12:08 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:12:09 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:12:09 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:12:10 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:12:10 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:12:10 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:12:10 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:12:10 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:12:10 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:12:10 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:12:10 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:12:12 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:12:12 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:12:12 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:12:12 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:12:12 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:12:12 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:12:12 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:12:12 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:02 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:13:02 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:13:02 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:13:02 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:13:02 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:13:02 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:13:02 Europe/Madrid] [FRONT] GET /favicon.ico
+[27-Nov-2025 20:13:03 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:13:03 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:03 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:13:03 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:13:03 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:13:03 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:13:03 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:13:03 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:13:04 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:13:04 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:05 Europe/Madrid] [FRONT] GET /logout
+[27-Nov-2025 20:13:05 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:13:05 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => ecc8bd87d11a114adf6c4866421070f4940021c1309a628a06d285848bb346ee
+    [user] => Array
+        (
+            [id] => 1
+            [name] => paco martínez
+            [email] => paco@example.com
+            [role] => user
+            [created_at] => 2025-11-24 21:22:07
+        )
+
+)
+
+[27-Nov-2025 20:13:05 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 1,
+  'name' => 'paco martínez',
+  'email' => 'paco@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-24 21:22:07',
+)
+[27-Nov-2025 20:13:05 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:13:05 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:13:05 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:13:05 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 20:13:05 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 20:13:05 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 20:13:05 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 20:13:07 Europe/Madrid] [FRONT] GET /register
+[27-Nov-2025 20:13:17 Europe/Madrid] [FRONT] POST /register
+[27-Nov-2025 20:13:31 Europe/Madrid] [FRONT] POST /register
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] ADD key=register_success, type=success, message='¡Has sido registrado con éxito!'
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [register_success] => Array
+        (
+            [message] => ¡Has sido registrado con éxito!
+            [type] => success
+        )
+
+)
+
+[27-Nov-2025 20:13:31 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] CONSUME key=register_success => Array
+(
+    [message] => ¡Has sido registrado con éxito!
+    [type] => success
+)
+
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has sido registrado con éxito!
+    [type] => success
+)
+
+[27-Nov-2025 20:13:31 Europe/Madrid] [FLASH] RENDER key=register_success => HTML generado
+[27-Nov-2025 20:13:36 Europe/Madrid] [FRONT] GET /product/123
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:13:36 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:38 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:13:38 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:13:38 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:40 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:13:40 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:42 Europe/Madrid] [FRONT] GET /dashboard
+[27-Nov-2025 20:13:42 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:13:42 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => 3d04e51d6ef263b3aff3d47667a0cbbdbdc536e9aad9b8b6838abf1f0850668f
+    [user] => Array
+        (
+            [id] => 11
+            [name] => manolin
+            [email] => manolin@example.com
+            [role] => user
+            [created_at] => 2025-11-27 19:13:31
+        )
+
+)
+
+[27-Nov-2025 20:13:42 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 11,
+  'name' => 'manolin',
+  'email' => 'manolin@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-27 19:13:31',
+)
+[27-Nov-2025 20:13:42 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:13:42 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:13:42 Europe/Madrid] [FRONT] GET /
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] RENDER key=login_success
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] CONSUME key=login_success
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] RENDER key=register_success
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] CONSUME key=register_success
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[27-Nov-2025 20:13:42 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[27-Nov-2025 20:13:45 Europe/Madrid] [FRONT] GET /logout
+[27-Nov-2025 20:13:45 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware ENTER =====
+[27-Nov-2025 20:13:45 Europe/Madrid] [MIDDLEWARE][Auth] SESSION=Array
+(
+    [_token] => 3d04e51d6ef263b3aff3d47667a0cbbdbdc536e9aad9b8b6838abf1f0850668f
+    [user] => Array
+        (
+            [id] => 11
+            [name] => manolin
+            [email] => manolin@example.com
+            [role] => user
+            [created_at] => 2025-11-27 19:13:31
+        )
+
+)
+
+[27-Nov-2025 20:13:45 Europe/Madrid] [MIDDLEWARE][Auth] Auth::user() => array (
+  'id' => 11,
+  'name' => 'manolin',
+  'email' => 'manolin@example.com',
+  'role' => 'user',
+  'created_at' => '2025-11-27 19:13:31',
+)
+[27-Nov-2025 20:13:45 Europe/Madrid] [MIDDLEWARE][Auth] Usuario autenticado, continuando...
+[27-Nov-2025 20:13:45 Europe/Madrid] ===== [MIDDLEWARE] AuthMiddleware EXIT =====
+[27-Nov-2025 20:13:45 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:13:45 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 20:13:45 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 20:13:45 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 20:13:45 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 20:13:50 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] ADD key=login_error, type=error, message='Revisa los datos introducidos.'
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_error] => Array
+        (
+            [message] => Revisa los datos introducidos.
+            [type] => error
+        )
+
+)
+
+[27-Nov-2025 20:13:50 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] CONSUME key=login_error => Array
+(
+    [message] => Revisa los datos introducidos.
+    [type] => error
+)
+
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => Revisa los datos introducidos.
+    [type] => error
+)
+
+[27-Nov-2025 20:13:50 Europe/Madrid] [FLASH] RENDER key=login_error => HTML generado
+[27-Nov-2025 20:14:40 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:14:40 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 20:14:40 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 20:14:40 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[27-Nov-2025 20:14:40 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[27-Nov-2025 20:14:46 Europe/Madrid] [FRONT] POST /login
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] ADD key=login_error, type=error, message='Correo o contraseña incorrectos.'
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] SESSION_KEY creado
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_error] => Array
+        (
+            [message] => Correo o contraseña incorrectos.
+            [type] => error
+        )
+
+)
+
+[27-Nov-2025 20:14:46 Europe/Madrid] [FRONT] GET /login
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] RENDER key=login_error
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] CONSUME key=login_error
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] CONSUME key=login_error => Array
+(
+    [message] => Correo o contraseña incorrectos.
+    [type] => error
+)
+
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] SESSION_KEY vacío, eliminado
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] FORMAT => Array
+(
+    [message] => Correo o contraseña incorrectos.
+    [type] => error
+)
+
+[27-Nov-2025 20:14:46 Europe/Madrid] [FLASH] RENDER key=login_error => HTML generado

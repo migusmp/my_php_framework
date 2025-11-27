@@ -39,6 +39,6 @@
 </form>
 
 <nav>
-    <a href="/register">¿No tienes cuenta? Regístrate</a>
-    <a href="/">Volver al inicio</a>
+    <a href="<?= url('register') ?>">¿No tienes cuenta? Regístrate</a>
+    <a href="<?= url('index') ?>">Volver al inicio</a>
 </nav>

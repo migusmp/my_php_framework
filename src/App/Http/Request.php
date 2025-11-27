@@ -290,4 +290,41 @@ final class Request
     {
         return $this->server;
     }
+
+    public function isPost(): bool
+    {
+        return $this->isMethod('POST');
+    }
+
+    public function isGet(): bool
+    {
+        return $this->isMethod('GET');
+    }
+
+    public function isAjax(): bool
+    {
+        return ($this->header('x-requested-with') === 'XMLHttpRequest');
+    }
+
+    /**
+     * Devuelve solo algunas claves de body+query.
+     *
+     * $request->only(['email', 'password'])
+     *
+     * @param string[] $keys
+     * @return array<string, mixed>
+     */
+    public function only(array $keys): array
+    {
+        $data = $this->all();
+        $result = [];
+
+        foreach ($keys as $key) {
+            if (array_key_exists($key, $data)) {
+                $result[$key] = $data[$key];
+            }
+        }
+
+        return $result;
+    }
 }

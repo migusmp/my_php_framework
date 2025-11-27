@@ -16,147 +16,123 @@ namespace App\Core;
  */
 final class Flash
 {
-    /**
-     * Clave principal en $_SESSION donde se guardan los mensajes.
-     */
     private const SESSION_KEY = 'FLASH_MESSAGES';
 
-    /**
-     * Tipos de mensaje disponibles.
-     */
     public const TYPE_ERROR   = 'error';
     public const TYPE_WARNING = 'warning';
     public const TYPE_INFO    = 'info';
     public const TYPE_SUCCESS = 'success';
 
-    /**
-     * Constructor privado para evitar instanciación.
-     */
     private function __construct()
     {
     }
 
-    // ================================================================
-    //                      API PRINCIPAL (ARRAY)
-    // ================================================================
-
-    /**
-     * Crea o reemplaza un mensaje flash.
-     *
-     * @param string $name    Identificador del mensaje (ej: 'login_error')
-     * @param string $message Texto del mensaje
-     * @param string $type    Tipo de mensaje (error, warning, info, success)
-     */
     public static function add(string $name, string $message, string $type = self::TYPE_INFO): void
     {
+        error_log("[FLASH] ADD key={$name}, type={$type}, message=" . var_export($message, true));
+
         if (!isset($_SESSION[self::SESSION_KEY])) {
             $_SESSION[self::SESSION_KEY] = [];
+            error_log('[FLASH] SESSION_KEY creado');
         }
 
         $_SESSION[self::SESSION_KEY][$name] = [
             'message' => $message,
             'type'    => $type,
         ];
+
+        error_log('[FLASH] Estado de $_SESSION[FLASH_MESSAGES]=' . print_r($_SESSION[self::SESSION_KEY], true));
     }
 
-    /**
-     * Obtiene un mensaje flash y lo elimina de la sesión.
-     *
-     * @return array|null ['message' => string, 'type' => string] o null si no existe
-     */
     public static function consume(string $name): ?array
     {
+        error_log("[FLASH] CONSUME key={$name}");
+
         if (
             !isset($_SESSION[self::SESSION_KEY]) ||
             !isset($_SESSION[self::SESSION_KEY][$name])
         ) {
+            error_log("[FLASH] CONSUME key={$name} NO ENCONTRADO");
             return null;
         }
 
         $flash = $_SESSION[self::SESSION_KEY][$name];
         unset($_SESSION[self::SESSION_KEY][$name]);
 
-        // Si ya no quedan mensajes, limpiamos la clave principal
+        error_log("[FLASH] CONSUME key={$name} => " . print_r($flash, true));
+
         if (empty($_SESSION[self::SESSION_KEY])) {
             unset($_SESSION[self::SESSION_KEY]);
+            error_log('[FLASH] SESSION_KEY vacío, eliminado');
         }
 
         return $flash;
     }
 
-    /**
-     * Devuelve true si existe un mensaje flash con ese nombre.
-     */
     public static function has(string $name): bool
     {
-        return isset($_SESSION[self::SESSION_KEY][$name]);
+        $has = isset($_SESSION[self::SESSION_KEY][$name]);
+        error_log("[FLASH] HAS key={$name}? " . ($has ? 'YES' : 'NO'));
+        return $has;
     }
 
-    /**
-     * Obtiene todos los mensajes flash y los elimina de la sesión.
-     *
-     * @return array<string, array{message:string,type:string}>
-     */
     public static function consumeAll(): array
     {
+        error_log('[FLASH] CONSUME_ALL llamado');
+
         if (!isset($_SESSION[self::SESSION_KEY])) {
+            error_log('[FLASH] CONSUME_ALL: no hay mensajes');
             return [];
         }
 
         $all = $_SESSION[self::SESSION_KEY];
         unset($_SESSION[self::SESSION_KEY]);
 
+        error_log('[FLASH] CONSUME_ALL => ' . print_r($all, true));
+
         return $all;
     }
 
-    // ================================================================
-    //                    ATAJOS STRING SIMPLES
-    // ================================================================
-
-    /**
-     * Guarda un mensaje flash simple (sin preocuparse por el tipo).
-     * Útil para casos rápidos donde solo importa el texto.
-     *
-     * @param string $key
-     * @param string $message
-     */
     public static function set(string $key, string $message): void
     {
+        error_log("[FLASH] SET key={$key}, message=" . var_export($message, true));
         self::add($key, $message, self::TYPE_INFO);
     }
 
-    /**
-     * Devuelve SOLO el texto del mensaje (ignorando el tipo) y lo consume.
-     *
-     * @return string|null
-     */
     public static function get(string $key): ?string
     {
+        error_log("[FLASH] GET key={$key}");
         $flash = self::consume($key);
 
+        if ($flash === null) {
+            error_log("[FLASH] GET key={$key} => null");
+            return null;
+        }
+
+        error_log("[FLASH] GET key={$key} => " . var_export($flash['message'], true));
         return $flash['message'] ?? null;
     }
 
     public static function put(string $key, mixed $value): void
     {
+        error_log("[FLASH] PUT key={$key}, value=" . var_export($value, true));
+
+        if (!isset($_SESSION[self::SESSION_KEY])) {
+            $_SESSION[self::SESSION_KEY] = [];
+        }
+
         $_SESSION[self::SESSION_KEY][$key] = $value;
+
+        error_log('[FLASH] Estado de $_SESSION[FLASH_MESSAGES]=' . print_r($_SESSION[self::SESSION_KEY], true));
     }
 
-    // ================================================================
-    //                    RENDERIZADO EN HTML (OPCIONAL)
-    // ================================================================
-
-    /**
-     * Genera el HTML para un mensaje flash con estilos según el tipo.
-     *
-     * @param array{message:string,type:string} $flash
-     */
     private static function format(array $flash): string
     {
+        error_log('[FLASH] FORMAT => ' . print_r($flash, true));
+
         $type    = \htmlspecialchars($flash['type'], ENT_QUOTES, 'UTF-8');
         $message = \htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8');
 
-        // Mapeo: tipo de mensaje → clase CSS concreta
         $classes = [
             'success' => 'flash flash-success',
             'error'   => 'flash flash-error',
@@ -164,7 +140,6 @@ final class Flash
             'info'    => 'flash flash-info',
         ];
 
-        // Si el tipo no existe, usar info por defecto
         $class = $classes[$type] ?? $classes['info'];
 
         return \sprintf(
@@ -174,32 +149,29 @@ final class Flash
         );
     }
 
-    /**
-     * Consume y renderiza un mensaje flash concreto.
-     *
-     * Devuelve el HTML (no hace echo).
-     */
     public static function render(string $name): string
     {
+        error_log("[FLASH] RENDER key={$name}");
         $flash = self::consume($name);
 
         if ($flash === null) {
+            error_log("[FLASH] RENDER key={$name} => no hay mensaje");
             return '';
         }
 
-        return self::format($flash);
+        $html = self::format($flash);
+        error_log("[FLASH] RENDER key={$name} => HTML generado");
+
+        return $html;
     }
 
-    /**
-     * Consume y renderiza todos los mensajes flash disponibles.
-     *
-     * Devuelve el HTML concatenado (no hace echo).
-     */
     public static function renderAll(): string
     {
+        error_log('[FLASH] RENDER_ALL llamado');
         $all = self::consumeAll();
 
         if (empty($all)) {
+            error_log('[FLASH] RENDER_ALL => no hay mensajes');
             return '';
         }
 
@@ -208,6 +180,8 @@ final class Flash
         foreach ($all as $flash) {
             $html .= self::format($flash) . PHP_EOL;
         }
+
+        error_log('[FLASH] RENDER_ALL => HTML generado');
 
         return $html;
     }

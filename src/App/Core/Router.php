@@ -9,36 +9,6 @@ use App\Http\Response;
 
 /**
  * Router principal del mini-framework.
- *
- * Características:
- *  - Rutas GET / POST / PUT / PATCH / DELETE.
- *  - Handlers tipo:
- *      • [Controlador::class, 'metodo']
- *      • closures
- *      • "HomeController@index"
- *  - Soporte de parámetros en la ruta:
- *      • /users/{id}
- *      • /posts/{slug}/comments/{commentId}
- *  - Middlewares registrables por nombre.
- *  - Sintaxis fluida:
- *
- *        $router->middleware('auth')->get('/dashboard', [...]);
- *
- *  - Prefijos y grupos de rutas:
- *
- *        $router->prefix('admin')->group('/panel', function (Router $r) {
- *            $r->get('/dashboard', 'AdminController@dashboard');
- *        }, ['auth', 'admin']);
- *
- *  - Override de método HTTP vía campo oculto _method en formularios:
- *
- *        <form method="POST" action="/producto/1">
- *            <input type="hidden" name="_method" value="DELETE">
- *        </form>
- *
- *  - Inyección de Request y Response en controladores y closures:
- *
- *        public function show(Request $request, Response $response, string $id) { ... }
  */
 class Router
 {
@@ -49,7 +19,8 @@ class Router
      *     handler: callable|array,
      *     middleware: string[],
      *     pattern: string|null,
-     *     params: string[]
+     *     params: string[],
+     *     name: string|null
      * }>>
      */
     private array $routes = [];
@@ -67,7 +38,8 @@ class Router
     private array $middlewareMap = [];
 
     /**
-     * Middlewares que se aplicarán a la siguiente ruta registrada.
+     * Middlewares que se aplicarán a la siguiente ruta registrada
+     * (cuando se usa $router->middleware()->get()).
      *
      * @var string[]
      */
@@ -86,24 +58,42 @@ class Router
     private array $currentGroupMiddlewares = [];
 
     /**
-     * Cambia el namespace base donde se buscan controladores.
+     * Última ruta registrada (para soportar ->name()).
+     *
+     * @var array{method: string, path: string}|null
      */
+    private ?array $lastRoute = null;
+
+    /**
+     * Mapa de nombres de ruta a [method, path].
+     *
+     * @var array<string, array{method: string, path: string}>
+     */
+    private array $namedRoutes = [];
+
+    /**
+     * Instancia global del Router para helpers como url().
+     */
+    private static ?self $instance = null;
+
+    // ================================================================
+    //                       CONFIGURACIÓN BÁSICA
+    // ================================================================
+
     public function setControllerNamespace(string $namespace): self
     {
         $this->controllerNamespace = rtrim($namespace, '\\') . '\\';
         return $this;
     }
 
-    /**
-     * Registrar un middleware por nombre.
-     */
     public function registerMiddleware(string $name, callable $middleware): void
     {
         $this->middlewareMap[$name] = $middleware;
     }
 
     /**
-     * Definir middlewares para la siguiente ruta declarada.
+     * Define middlewares "por defecto" para la siguiente ruta
+     * cuando se usa: $router->middleware('auth')->get(...).
      */
     public function middleware(string|array ...$names): self
     {
@@ -118,27 +108,76 @@ class Router
     }
 
     /**
-     * Define un prefijo base para las rutas siguientes.
+     * Añadir middlewares a una ruta ya registrada (usado por RouteDefinition).
      */
+    public function appendMiddlewareToRoute(string $method, string $path, array $names): void
+    {
+        if (!isset($this->routes[$method][$path])) {
+            throw new \RuntimeException("Ruta {$method} {$path} no encontrada para añadir middleware.");
+        }
+
+        $all = [];
+        foreach ($names as $name) {
+            $all = array_merge($all, (array) $name);
+        }
+
+        $this->routes[$method][$path]['middleware'] = array_unique(array_merge(
+            $this->routes[$method][$path]['middleware'],
+            $all
+        ));
+    }
+
+    /**
+     * Asignar nombre a ruta ya registrada (usado por RouteDefinition).
+     */
+    public function nameRoute(string $method, string $path, string $name): void
+    {
+        if (!isset($this->routes[$method][$path])) {
+            throw new \RuntimeException("Ruta {$method} {$path} no encontrada para nombrar.");
+        }
+
+        $this->routes[$method][$path]['name'] = $name;
+
+        $this->namedRoutes[$name] = [
+            'method' => $method,
+            'path'   => $path,
+        ];
+    }
+
     public function prefix(string $prefix): self
     {
-        $this->currentPrefix = \rtrim(
-            ($this->currentPrefix === '' ? '' : $this->currentPrefix . '/') . \ltrim($prefix, '/'),
-            '/'
-        );
+        $normalized = trim($prefix, '/');
+
+        if ($normalized === '') {
+            $this->currentPrefix = '';
+        } else {
+            if ($this->currentPrefix === '') {
+                $this->currentPrefix = $normalized;
+            } else {
+                $this->currentPrefix = trim($this->currentPrefix . '/' . $normalized, '/');
+            }
+        }
 
         return $this;
     }
 
-    /**
-     * Define un grupo de rutas con un prefijo y middlewares comunes.
-     */
     public function group(string $prefix, callable $callback, array $middleware = []): void
     {
         $parentPrefix      = $this->currentPrefix;
         $parentMiddlewares = $this->currentGroupMiddlewares;
 
-        $this->currentPrefix = \rtrim($parentPrefix . $prefix, '/');
+        $normalizedPrefix = trim($prefix, '/');
+
+        if ($normalizedPrefix === '') {
+            $this->currentPrefix = $parentPrefix;
+        } else {
+            if ($parentPrefix === '') {
+                $this->currentPrefix = $normalizedPrefix;
+            } else {
+                $this->currentPrefix = trim($parentPrefix . '/' . $normalizedPrefix, '/');
+            }
+        }
+
         $this->currentGroupMiddlewares = \array_merge($parentMiddlewares, $middleware);
 
         $callback($this);
@@ -147,52 +186,111 @@ class Router
         $this->currentGroupMiddlewares = $parentMiddlewares;
     }
 
-    /**
-     * Registra una ruta GET.
-     */
-    public function get(string $path, callable|array|string $handler): void
+    // ================================================================
+    //                        REGISTRO DE RUTAS
+    // ================================================================
+
+    public function get(string $path, callable|array|string $handler): RouteDefinition
     {
-        $this->register('GET', $path, $handler);
+        $fullPath = $this->register('GET', $path, $handler);
+        return new RouteDefinition($this, 'GET', $fullPath);
     }
 
-    /**
-     * Registra una ruta POST.
-     */
-    public function post(string $path, callable|array|string $handler): void
+    public function post(string $path, callable|array|string $handler): RouteDefinition
     {
-        $this->register('POST', $path, $handler);
+        $fullPath = $this->register('POST', $path, $handler);
+        return new RouteDefinition($this, 'POST', $fullPath);
     }
 
-    /**
-     * Registra una ruta PUT.
-     */
-    public function put(string $path, callable|array|string $handler): void
+    public function put(string $path, callable|array|string $handler): RouteDefinition
     {
-        $this->register('PUT', $path, $handler);
+        $fullPath = $this->register('PUT', $path, $handler);
+        return new RouteDefinition($this, 'PUT', $fullPath);
     }
 
-    /**
-     * Registra una ruta PATCH.
-     */
-    public function patch(string $path, callable|array|string $handler): void
+    public function patch(string $path, callable|array|string $handler): RouteDefinition
     {
-        $this->register('PATCH', $path, $handler);
+        $fullPath = $this->register('PATCH', $path, $handler);
+        return new RouteDefinition($this, 'PATCH', $fullPath);
     }
 
-    /**
-     * Registra una ruta DELETE.
-     */
-    public function delete(string $path, callable|array|string $handler): void
+    public function delete(string $path, callable|array|string $handler): RouteDefinition
     {
-        $this->register('DELETE', $path, $handler);
+        $fullPath = $this->register('DELETE', $path, $handler);
+        return new RouteDefinition($this, 'DELETE', $fullPath);
+    }
+
+    public function name(string $name): self
+    {
+        if ($this->lastRoute === null) {
+            throw new \LogicException("No hay ninguna ruta reciente para asignarle el nombre '{$name}'.");
+        }
+
+        $method = $this->lastRoute['method'];
+        $path   = $this->lastRoute['path'];
+
+        if (!isset($this->routes[$method][$path])) {
+            throw new \RuntimeException("Ruta {$method} {$path} no encontrada para nombrar.");
+        }
+
+        $this->routes[$method][$path]['name'] = $name;
+        $this->namedRoutes[$name] = [
+            'method' => $method,
+            'path'   => $path,
+        ];
+
+        return $this;
+    }
+
+    public function route(string $name, array $params = []): string
+    {
+        if (!isset($this->namedRoutes[$name])) {
+            throw new \InvalidArgumentException("No existe ninguna ruta con nombre '{$name}'.");
+        }
+
+        $path = $this->namedRoutes[$name]['path'];
+
+        $url = \preg_replace_callback(
+            '#\{([a-zA-Z_][a-zA-Z0-9_-]*)\}#',
+            function (array $matches) use (&$params, $name): string {
+                $key = $matches[1];
+
+                if (!\array_key_exists($key, $params)) {
+                    throw new \InvalidArgumentException(
+                        "Falta el parámetro '{$key}' para construir la URL de la ruta '{$name}'."
+                    );
+                }
+
+                $value = (string) $params[$key];
+                unset($params[$key]);
+
+                return $value;
+            },
+            $path
+        );
+
+        if ($params !== []) {
+            $url .= '?' . \http_build_query($params);
+        }
+
+        return $url;
     }
 
     /**
      * Registro interno de rutas.
+     *
+     * Devuelve el path final normalizado ("/login", "/dashboard", etc.)
+     * para que lo use RouteDefinition.
      */
-    private function register(string $method, string $path, callable|array|string $handler): void
+    private function register(string $method, string $path, callable|array|string $handler): string
     {
-        $fullPath = $this->currentPrefix . $path;
+        $base = $this->currentPrefix !== ''
+            ? trim($this->currentPrefix, '/') . '/'
+            : '';
+
+        $normalizedPath = ltrim($path, '/');
+
+        $fullPath = '/' . ltrim($base . $normalizedPath, '/');
 
         $handler = $this->normalizeHandler($handler);
 
@@ -211,18 +309,19 @@ class Router
             ),
             'pattern'    => $pattern,
             'params'     => $paramNames,
+            'name'       => null,
+        ];
+
+        $this->lastRoute = [
+            'method' => $method,
+            'path'   => $fullPath,
         ];
 
         $this->currentMiddleware = [];
+
+        return $fullPath;
     }
 
-    /**
-     * Normaliza un handler:
-     *
-     * - "HomeController@index" → [App\Controllers\HomeController, 'index']
-     * - [Controller::class, 'method'] → se deja igual
-     * - callable → se deja igual
-     */
     private function normalizeHandler(callable|array|string $handler): callable|array
     {
         if (\is_string($handler)) {
@@ -254,9 +353,6 @@ class Router
         throw new \InvalidArgumentException('Handler de ruta no válido.');
     }
 
-    /**
-     * Compila una ruta con parámetros a un patrón regex.
-     */
     private function compilePathToRegex(string $path): array
     {
         $paramNames = [];
@@ -275,9 +371,28 @@ class Router
         return [$regex, $paramNames];
     }
 
-    /**
-     * Resuelve la petición HTTP y ejecuta el handler asociado.
-     */
+    // ================================================================
+    //                 INSTANCIA GLOBAL (url(), Route::...)
+    // ================================================================
+
+    public function setAsGlobal(): void
+    {
+        self::$instance = $this;
+    }
+
+    public static function getInstance(): self
+    {
+        if (self::$instance === null) {
+            throw new \RuntimeException('Router global no inicializado.');
+        }
+
+        return self::$instance;
+    }
+
+    // ================================================================
+    //                          DISPATCH
+    // ================================================================
+
     public function dispatch(string $uri, string $method): void
     {
         $originalMethod  = \strtoupper($method);
@@ -295,23 +410,23 @@ class Router
             }
         }
 
-        // Creamos Request y Response
         $request  = Request::fromGlobals($effectiveMethod);
         $response = new Response();
 
-        $path = $request->path();
+        $path = rtrim($request->path(), '/');
+        if ($path === '') {
+            $path = '/';
+        }
 
         $routesForMethod = $this->routes[$effectiveMethod] ?? [];
 
         $matchedRoute = null;
         $routeParams  = [];
 
-        // 1) Ruta estática
         if (isset($routesForMethod[$path]) && $routesForMethod[$path]['pattern'] === null) {
             $matchedRoute = $routesForMethod[$path];
             $routeParams  = [];
         } else {
-            // 2) Buscar entre rutas dinámicas
             foreach ($routesForMethod as $routePath => $route) {
                 $pattern = $route['pattern'] ?? null;
 
@@ -360,12 +475,46 @@ class Router
             throw new \RuntimeException('Handler de ruta no definido');
         }
 
-        /**
-         * Handler central que ejecuta el controlador o callable
-         * recibiendo SIEMPRE Request y Response como primeros parámetros.
-         */
         $coreHandler = function () use ($handler, $request, $response, $routeParams) {
-            // Caso 1: [Controller::class, 'metodo']
+            $buildArgs = function (\ReflectionFunctionAbstract $ref) use ($request, $response, $routeParams): array {
+                $args          = [];
+                $dynamicParams = array_values($routeParams);
+
+                foreach ($ref->getParameters() as $param) {
+                    $type = $param->getType();
+
+                    if ($type instanceof \ReflectionNamedType) {
+                        $tname = $type->getName();
+
+                        if ($tname === Request::class) {
+                            $args[] = $request;
+                            continue;
+                        }
+
+                        if ($tname === Response::class) {
+                            $args[] = $response;
+                            continue;
+                        }
+                    }
+
+                    if (!empty($dynamicParams)) {
+                        $args[] = array_shift($dynamicParams);
+                        continue;
+                    }
+
+                    if ($param->isDefaultValueAvailable()) {
+                        $args[] = $param->getDefaultValue();
+                        continue;
+                    }
+
+                    throw new \RuntimeException(
+                        "No se pudo resolver el parámetro \$" . $param->getName()
+                    );
+                }
+
+                return $args;
+            };
+
             if (\is_array($handler) && \count($handler) === 2) {
                 [$class, $action] = $handler;
 
@@ -379,22 +528,24 @@ class Router
                     throw new \RuntimeException("Método $action no existe en $class");
                 }
 
-                $controller->{$action}($request, $response, ...$routeParams);
+                $ref  = new \ReflectionMethod($controller, $action);
+                $args = $buildArgs($ref);
+
+                $ref->invokeArgs($controller, $args);
                 return;
             }
 
-            // Caso 2: closure / callable normal
             if (\is_callable($handler)) {
-                \call_user_func_array($handler, array_merge([$request, $response], $routeParams));
+                $ref  = new \ReflectionFunction(\Closure::fromCallable($handler));
+                $args = $buildArgs($ref);
+
+                $ref->invokeArgs($args);
                 return;
             }
 
             throw new \RuntimeException('Handler de ruta no válido');
         };
 
-        /**
-         * Encadenar middlewares alrededor del core handler.
-         */
         $runner = $coreHandler;
 
         foreach (\array_reverse($middlewares) as $name) {
@@ -411,10 +562,8 @@ class Router
             };
         }
 
-        // Ejecutar pipeline
         $runner();
 
-        // Enviar la respuesta al cliente (si no se ha enviado ya)
         if (!$response->isSent()) {
             $response->send();
         }

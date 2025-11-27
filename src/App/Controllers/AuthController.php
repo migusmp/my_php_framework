@@ -80,7 +80,7 @@ class AuthController
     /**
      * Muestra el formulario de registro.
      */
-    public function get_register(Request $request, Response $response): void
+    public function get_register(Response $response): void
     {
         $this->renderRegister($response);
     }
@@ -216,7 +216,7 @@ class AuthController
 
         Flash::add('register_success', '¡Has sido registrado con éxito!', Flash::TYPE_SUCCESS);
 
-        // Redirección usando Response
+        // Redirección usando la Response inyectada por el Router
         $response->redirect('/');
     }
 
@@ -227,7 +227,7 @@ class AuthController
     /**
      * Muestra el formulario de login.
      */
-    public function get_login(Request $request, Response $response): void
+    public function get_login(Response $response): void
     {
         $this->renderLogin($response);
     }
@@ -266,8 +266,18 @@ class AuthController
         );
 
         if ($validator->fails()) {
+            // Errores de validación → volvemos a login con errores
             $errors = $this->flattenErrors($validator->errors());
-            $this->renderLogin($response, $errors, $email);
+
+            // Si quieres seguir pintando la vista directamente:
+            // $this->renderLogin($response, $errors, $email);
+            // return;
+
+            // 🔥 Mucho más claro: usar flash + redirect
+            Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
+
+            // Podrías guardar el old input en sesión si quieres
+            $response->redirect(url('login'));
             return;
         }
 
@@ -285,11 +295,20 @@ class AuthController
         $user = $this->userService->login($email, $password);
 
         if (!$user instanceof User) {
-            // Ahora usamos redirect() + flash + old input
-            redirect('/login')
-                ->with('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR)
-                ->withInput($request)
-                ->send();
+            // Credenciales inválidas
+
+            // Opción A: re-renderizar la vista (como tenías)
+            // $this->renderLogin(
+            //     $response,
+            //     ['login' => 'Correo o contraseña incorrectos.'],
+            //     $email
+            // );
+            // return;
+
+            // Opción B (recomendada): flash + redirect
+            Flash::add('login_error', 'Correo o contraseña incorrectos.', Flash::TYPE_ERROR);
+
+            $response->redirect(url('login'));
             return;
         }
 
@@ -331,20 +350,12 @@ class AuthController
 
         Csrf::regenerateToken();
 
-        $response->redirect('/');
+        // ⬅️ Aquí redirigimos a la ruta nombrada "index"
+        $response->redirect(url('index'));
+        return;
     }
 
-    // ================================================================
-    //                              LOGOUT
-    // ================================================================
-
-    /**
-     * Cierra la sesión del usuario:
-     *  - Elimina la sesión persistente en BBDD
-     *  - Elimina la cookie de autenticación
-     *  - Limpia y destruye la sesión nativa de PHP
-     */
-    public function logout(Request $request, Response $response): void
+    public function logout(Response $response): void
     {
         $token = $_COOKIE['auth_token'] ?? null;
 
@@ -386,7 +397,8 @@ class AuthController
 
         Csrf::regenerateToken();
 
-        $response->redirect('/login');
+        // Mejor usar la ruta nombrada:
+        $response->redirect(url('login'));
     }
 
     // ================================================================
