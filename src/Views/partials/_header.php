@@ -1,4 +1,4 @@
 <header class="site-header">
-    <h1><?= APP_NAME ?></h1>
+    <h1><?= config('app.name') ?></h1>
 </header>
 

@@ -9,8 +9,8 @@ $styles = $styles ?? [];
     <meta charset="UTF-8">
         <title>
             <?= isset($title)
-                ? htmlspecialchars($title) . ' | ' . APP_NAME
-                : APP_NAME
+                ? htmlspecialchars($title) . ' | ' . env('APP_NAME')
+                : env('APP_NAME')
 ?>
         </title>
 

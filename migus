@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/vendor/autoload.php';
+
+// Si tienes un autoload manual (src/autoload.php), inclúyelo también:
+require __DIR__ . '/src/autoload.php';
+
+use App\Console\Application;
+
+// Creamos la "app" de consola y le pasamos los argumentos de CLI
+$console = new Application();
+exit($console->run($argv));
+

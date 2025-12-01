@@ -2087,3 +2087,490 @@ Stack trace:
 [28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] CONSUME key=login_error
 [28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] CONSUME key=login_error NO ENCONTRADO
 [28-Nov-2025 00:29:42 Europe/Madrid] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 09:53:51 UTC] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in /home/migus/workspace/php/php-vanilla-server/public/index.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/public/index.php on line 10
+[01-Dec-2025 09:53:51 UTC] PHP Fatal error:  Uncaught Error: Class "Dotenv\Dotenv" not found in /home/migus/workspace/php/php-vanilla-server/public/index.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/public/index.php on line 10
+[01-Dec-2025 10:54:57 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 10:54:57 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 11:02:49 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 11:02:49 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 11:02:49 Europe/Madrid] [FRONT] GET /favicon.ico
+[01-Dec-2025 11:07:26 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 11:07:26 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 11:07:26 Europe/Madrid] [FRONT] GET /favicon.ico
+[01-Dec-2025 11:12:11 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 11:12:11 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 11:12:11 Europe/Madrid] PHP Fatal error:  Uncaught RuntimeException: ❌ Error de conexión a la base de datos: SQLSTATE[HY000] [2002] No such file or directory in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Database.php:42
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Services/UserService.php(30): App\Core\Database::getConnection()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(38): App\Services\UserService->__construct()
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(607): App\Controllers\AuthController->__construct()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/GuestMiddleware.php(24): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(656): App\Middleware\GuestMiddleware->__invoke()
+#5 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#6 /home/migus/workspace/php/php-vanilla-server/public/index.php(48): App\Core\Router->dispatch()
+#7 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Database.php on line 42
+[01-Dec-2025 11:13:20 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 11:13:20 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 12:16:50 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 12:16:50 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 12:18:01 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 12:18:01 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 12:20:42 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 12:20:42 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:54:34 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 13:54:34 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:55:42 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 13:55:42 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:56:23 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 13:56:23 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 13:56:25 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 13:56:25 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 13:56:31 Europe/Madrid] [FRONT] GET /product/456
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 13:56:31 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 13:56:33 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 13:56:33 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 13:56:35 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 13:56:35 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:59:31 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 13:59:31 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 13:59:57 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 13:59:57 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:04:55 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:04:55 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:04:56 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:04:56 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:08:00 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 14:08:13 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:08:13 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:09:02 Europe/Madrid] [FRONT] GET /
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:09:02 Europe/Madrid] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:09:05 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:09:05 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:09:07 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:09:07 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:13:39 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:13:39 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant APP_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 5
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant APP_ENV already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 6
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant DB_HOST already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 10
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant DB_PORT already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 11
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant DB_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 12
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant DB_USER already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 13
+[01-Dec-2025 14:13:39 Europe/Madrid] PHP Warning:  Constant DB_PASS already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 14
+[01-Dec-2025 14:16:16 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:16:16 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant APP_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 5
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant APP_ENV already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 6
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant DB_HOST already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 10
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant DB_PORT already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 11
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant DB_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 12
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant DB_USER already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 13
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Warning:  Constant DB_PASS already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 14
+[01-Dec-2025 14:16:16 Europe/Madrid] PHP Parse error:  syntax error, unexpected token "*", expecting end of file in /home/migus/workspace/php/php-vanilla-server/config/database.php on line 1
+[01-Dec-2025 14:49:39 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:49:39 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant APP_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 5
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant APP_ENV already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 6
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant DB_HOST already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 10
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant DB_PORT already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 11
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant DB_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 12
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant DB_USER already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 13
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Warning:  Constant DB_PASS already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 14
+[01-Dec-2025 14:49:39 Europe/Madrid] PHP Parse error:  syntax error, unexpected token "*", expecting end of file in /home/migus/workspace/php/php-vanilla-server/config/database.php on line 1
+[01-Dec-2025 14:49:59 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:49:59 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant APP_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 5
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant APP_ENV already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 6
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant DB_HOST already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 10
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant DB_PORT already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 11
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant DB_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 12
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant DB_USER already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 13
+[01-Dec-2025 14:49:59 Europe/Madrid] PHP Warning:  Constant DB_PASS already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 14
+[01-Dec-2025 14:50:06 Europe/Madrid] [FRONT] GET /login
+[01-Dec-2025 14:50:06 Europe/Madrid] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant APP_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 5
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant APP_ENV already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 6
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant DB_HOST already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 10
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant DB_PORT already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 11
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant DB_NAME already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 12
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant DB_USER already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 13
+[01-Dec-2025 14:50:06 Europe/Madrid] PHP Warning:  Constant DB_PASS already defined in /home/migus/workspace/php/php-vanilla-server/config/config.php on line 14
+[01-Dec-2025 13:50:31 UTC] [FRONT] GET /login
+[01-Dec-2025 13:50:31 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:51:41 UTC] [FRONT] GET /login
+[01-Dec-2025 13:51:41 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:51:41 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:51:41 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:51:41 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:51:41 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:51:41 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "APP_NAME" in /home/migus/workspace/php/php-vanilla-server/src/Views/layout.php:12
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(77): require()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(103): App\Core\View::renderToString()
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(68): App\Core\View::renderToResponse()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(247): App\Controllers\AuthController->renderLogin()
+#4 [internal function]: App\Controllers\AuthController->get_login()
+#5 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(616): ReflectionMethod->invokeArgs()
+#6 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/GuestMiddleware.php(24): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#7 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(656): App\Middleware\GuestMiddleware->__invoke()
+#8 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#9 /home/migus/workspace/php/php-vanilla-server/public/index.php(48): App\Core\Router->dispatch()
+#10 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/Views/layout.php on line 12
+[01-Dec-2025 13:53:12 UTC] [FRONT] GET /login
+[01-Dec-2025 13:53:12 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:53:12 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:53:12 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:53:12 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:53:12 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:53:12 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "APP_NAME" in /home/migus/workspace/php/php-vanilla-server/src/Views/layout.php:12
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(77): require()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(103): App\Core\View::renderToString()
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(68): App\Core\View::renderToResponse()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(247): App\Controllers\AuthController->renderLogin()
+#4 [internal function]: App\Controllers\AuthController->get_login()
+#5 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(616): ReflectionMethod->invokeArgs()
+#6 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/GuestMiddleware.php(24): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#7 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(656): App\Middleware\GuestMiddleware->__invoke()
+#8 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#9 /home/migus/workspace/php/php-vanilla-server/public/index.php(48): App\Core\Router->dispatch()
+#10 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/Views/layout.php on line 12
+[01-Dec-2025 13:53:51 UTC] [FRONT] GET /login
+[01-Dec-2025 13:53:51 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:53:51 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:53:51 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:53:51 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:53:51 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:53:51 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "APP_NAME" in /home/migus/workspace/php/php-vanilla-server/src/Views/partials/_header.php:2
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/Views/layout.php(27): include()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(77): require('...')
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(103): App\Core\View::renderToString()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(68): App\Core\View::renderToResponse()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(247): App\Controllers\AuthController->renderLogin()
+#5 [internal function]: App\Controllers\AuthController->get_login()
+#6 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(616): ReflectionMethod->invokeArgs()
+#7 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/GuestMiddleware.php(24): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#8 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(656): App\Middleware\GuestMiddleware->__invoke()
+#9 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#10 /home/migus/workspace/php/php-vanilla-server/public/index.php(48): App\Core\Router->dispatch()
+#11 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/Views/partials/_header.php on line 2
+[01-Dec-2025 13:54:18 UTC] [FRONT] GET /login
+[01-Dec-2025 13:54:18 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:54:18 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:54:18 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:54:18 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:54:18 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:54:18 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "APP_NAME" in /home/migus/workspace/php/php-vanilla-server/src/Views/partials/_footer.php:2
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/Views/layout.php(34): include()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(77): require('...')
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(103): App\Core\View::renderToString()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(68): App\Core\View::renderToResponse()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/AuthController.php(247): App\Controllers\AuthController->renderLogin()
+#5 [internal function]: App\Controllers\AuthController->get_login()
+#6 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(616): ReflectionMethod->invokeArgs()
+#7 /home/migus/workspace/php/php-vanilla-server/src/App/Middleware/GuestMiddleware.php(24): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#8 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(656): App\Middleware\GuestMiddleware->__invoke()
+#9 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():642}()
+#10 /home/migus/workspace/php/php-vanilla-server/public/index.php(48): App\Core\Router->dispatch()
+#11 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/Views/partials/_footer.php on line 2
+[01-Dec-2025 13:54:39 UTC] [FRONT] GET /login
+[01-Dec-2025 13:54:39 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:54:39 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:54:39 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:54:39 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:54:39 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:54:42 UTC] [FRONT] GET /register
+[01-Dec-2025 13:54:42 UTC] [MIDDLEWARE] GET /register
+[01-Dec-2025 13:54:43 UTC] [FRONT] GET /login
+[01-Dec-2025 13:54:43 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:54:43 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:54:43 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:54:43 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:54:43 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:54:44 UTC] [FRONT] GET /register
+[01-Dec-2025 13:54:44 UTC] [MIDDLEWARE] GET /register
+[01-Dec-2025 13:54:45 UTC] [FRONT] GET /login
+[01-Dec-2025 13:54:45 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:54:45 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:54:45 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:54:45 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:54:45 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:54:54 UTC] [FRONT] POST /login
+[01-Dec-2025 13:54:54 UTC] [MIDDLEWARE] POST /login
+[01-Dec-2025 13:54:54 UTC] [FLASH] ADD key=login_success, type=success, message='¡Has iniciado sesión correctamente!'
+[01-Dec-2025 13:54:54 UTC] [FLASH] SESSION_KEY creado
+[01-Dec-2025 13:54:54 UTC] [FLASH] Estado de $_SESSION[FLASH_MESSAGES]=Array
+(
+    [login_success] => Array
+        (
+            [message] => ¡Has iniciado sesión correctamente!
+            [type] => success
+        )
+
+)
+
+[01-Dec-2025 13:54:54 UTC] [FRONT] GET /
+[01-Dec-2025 13:54:54 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 13:54:54 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 13:54:54 UTC] [FLASH] CONSUME key=login_success => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[01-Dec-2025 13:54:54 UTC] [FLASH] SESSION_KEY vacío, eliminado
+[01-Dec-2025 13:54:54 UTC] [FLASH] FORMAT => Array
+(
+    [message] => ¡Has iniciado sesión correctamente!
+    [type] => success
+)
+
+[01-Dec-2025 13:54:54 UTC] [FLASH] RENDER key=login_success => HTML generado
+[01-Dec-2025 13:54:54 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 13:54:54 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 13:54:54 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 13:54:54 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 13:54:57 UTC] [FRONT] GET /logout
+[01-Dec-2025 13:54:57 UTC] [MIDDLEWARE] GET /logout
+[01-Dec-2025 13:54:57 UTC] [FRONT] GET /login
+[01-Dec-2025 13:54:57 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:54:57 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:54:57 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:54:57 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:54:57 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 13:56:33 UTC] [FRONT] GET /register
+[01-Dec-2025 13:56:33 UTC] [MIDDLEWARE] GET /register
+[01-Dec-2025 13:56:35 UTC] [FRONT] GET /login
+[01-Dec-2025 13:56:35 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 13:56:35 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 13:56:35 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 13:56:35 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 13:56:35 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:00:13 UTC] [FRONT] GET /login
+[01-Dec-2025 14:00:13 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:00:13 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:00:13 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:00:13 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:00:13 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:04:57 UTC] PHP Warning:  require_once(/home/migus/workspace/php/php-vanilla-server/public/../config/config.php): Failed to open stream: No such file or directory in /home/migus/workspace/php/php-vanilla-server/public/index.php on line 19
+[01-Dec-2025 14:04:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/migus/workspace/php/php-vanilla-server/public/../config/config.php' (include_path='.:') in /home/migus/workspace/php/php-vanilla-server/public/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/public/index.php on line 19
+[01-Dec-2025 14:05:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/migus/workspace/php/php-vanilla-server/config/app.php:4
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/public/index.php(19): require_once()
+#1 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/config/app.php on line 4
+[01-Dec-2025 14:08:00 UTC] [FRONT] GET /login
+[01-Dec-2025 14:08:00 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:08:00 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:08:00 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:08:00 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:08:00 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:09:46 UTC] [FRONT] GET /login
+[01-Dec-2025 14:09:46 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:09:46 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:09:46 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:09:46 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:09:46 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:13:16 UTC] PHP Fatal error:  Uncaught RuntimeException: Controlador App\Controllers\CursoController no existe in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:425
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(357): App\Core\Router->normalizeHandler()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(257): App\Core\Router->register()
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Route.php(34): App\Core\Router->get()
+#3 /home/migus/workspace/php/php-vanilla-server/routes/web.php(39): App\Core\Route::get()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Providers/RouteServiceProvider.php(33): require('...')
+#5 /home/migus/workspace/php/php-vanilla-server/public/index.php(40): App\Providers\RouteServiceProvider::loadRoutes()
+#6 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 425
+[01-Dec-2025 14:15:21 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:15:21 UTC] PHP Fatal error:  Uncaught RuntimeException: Controller CursoController no existe in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:604
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#1 /home/migus/workspace/php/php-vanilla-server/public/index.php(47): App\Core\Router->dispatch()
+#2 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 604
+[01-Dec-2025 14:15:41 UTC] PHP Fatal error:  Uncaught RuntimeException: Controlador App\Controllers\CursoController no existe in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php:425
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(357): App\Core\Router->normalizeHandler()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(257): App\Core\Router->register()
+#2 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Route.php(34): App\Core\Router->get()
+#3 /home/migus/workspace/php/php-vanilla-server/routes/web.php(39): App\Core\Route::get()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Providers/RouteServiceProvider.php(33): require('...')
+#5 /home/migus/workspace/php/php-vanilla-server/public/index.php(40): App\Providers\RouteServiceProvider::loadRoutes()
+#6 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php on line 425
+[01-Dec-2025 14:17:57 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:20:18 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:20:18 UTC] PHP Fatal error:  Uncaught RuntimeException: La vista '/DAW/cliente/index' no existe en /home/migus/workspace/php/php-vanilla-server/src/App/Core/../../Views//DAW/cliente/index.php in /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php:55
+Stack trace:
+#0 /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php(36): App\Core\View::renderToString()
+#1 /home/migus/workspace/php/php-vanilla-server/src/App/Controllers/CursoController.php(11): App\Core\View::render()
+#2 [internal function]: App\Controllers\CursoController->index()
+#3 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(616): ReflectionMethod->invokeArgs()
+#4 /home/migus/workspace/php/php-vanilla-server/src/App/Core/Router.php(667): App\Core\Router->{closure:App\Core\Router::dispatch():560}()
+#5 /home/migus/workspace/php/php-vanilla-server/public/index.php(47): App\Core\Router->dispatch()
+#6 {main}
+  thrown in /home/migus/workspace/php/php-vanilla-server/src/App/Core/View.php on line 55
+[01-Dec-2025 14:20:56 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:21:53 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:22:51 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:28:15 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:30:16 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:31:12 UTC] [FRONT] GET /
+[01-Dec-2025 14:31:12 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:31:12 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:31:12 UTC] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:31:12 UTC] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:31:12 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:31:12 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:31:12 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:31:12 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:31:13 UTC] [FRONT] GET /product/456
+[01-Dec-2025 14:31:13 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:31:13 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:31:13 UTC] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:31:13 UTC] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:31:13 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:31:13 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:31:13 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:31:13 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:31:14 UTC] [FRONT] GET /
+[01-Dec-2025 14:31:14 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:31:14 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:31:14 UTC] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:31:14 UTC] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:31:14 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:31:14 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:31:14 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:31:14 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:35:06 UTC] [FRONT] GET /
+[01-Dec-2025 14:35:06 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:35:06 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:35:06 UTC] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:35:06 UTC] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:35:06 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:35:06 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:35:06 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:35:06 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:35:07 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:07 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:37 UTC] [FRONT] GET /login
+[01-Dec-2025 14:42:37 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:42:37 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:42:37 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:42:37 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:42:37 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:42:38 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:39 UTC] [FRONT] GET /login
+[01-Dec-2025 14:42:39 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:42:39 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:42:39 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:42:39 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:42:39 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:42:40 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:41 UTC] [FRONT] GET /
+[01-Dec-2025 14:42:41 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:42:41 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:42:41 UTC] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:42:41 UTC] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:42:41 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:42:41 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:42:41 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:42:41 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:42:42 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:42 UTC] [FRONT] GET /login
+[01-Dec-2025 14:42:42 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:42:42 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:42:42 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:42:42 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:42:42 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:42:43 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:44 UTC] [FRONT] GET /login
+[01-Dec-2025 14:42:44 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:42:44 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:42:44 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:42:44 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:42:44 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:42:45 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:46 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:47 UTC] [FRONT] GET /login
+[01-Dec-2025 14:42:47 UTC] [MIDDLEWARE] GET /login
+[01-Dec-2025 14:42:47 UTC] [FLASH] RENDER key=login_error
+[01-Dec-2025 14:42:47 UTC] [FLASH] CONSUME key=login_error
+[01-Dec-2025 14:42:47 UTC] [FLASH] CONSUME key=login_error NO ENCONTRADO
+[01-Dec-2025 14:42:47 UTC] [FLASH] RENDER key=login_error => no hay mensaje
+[01-Dec-2025 14:42:48 UTC] [FRONT] GET /curso/cliente
+[01-Dec-2025 14:42:49 UTC] [FRONT] GET /
+[01-Dec-2025 14:42:49 UTC] [FLASH] RENDER key=login_success
+[01-Dec-2025 14:42:49 UTC] [FLASH] CONSUME key=login_success
+[01-Dec-2025 14:42:49 UTC] [FLASH] CONSUME key=login_success NO ENCONTRADO
+[01-Dec-2025 14:42:49 UTC] [FLASH] RENDER key=login_success => no hay mensaje
+[01-Dec-2025 14:42:49 UTC] [FLASH] RENDER key=register_success
+[01-Dec-2025 14:42:49 UTC] [FLASH] CONSUME key=register_success
+[01-Dec-2025 14:42:49 UTC] [FLASH] CONSUME key=register_success NO ENCONTRADO
+[01-Dec-2025 14:42:49 UTC] [FLASH] RENDER key=register_success => no hay mensaje
+[01-Dec-2025 14:42:52 UTC] [FRONT] GET /curso/cliente

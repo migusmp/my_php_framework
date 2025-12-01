@@ -35,3 +35,5 @@ Route::post('/register', 'AuthController@post_register')
 // GET /dashboard → solo autenticados
 Route::get('/dashboard', 'DashboardController@index')
     ->middleware('auth');
+
+Route::get('/curso/cliente', 'CursoController@index');

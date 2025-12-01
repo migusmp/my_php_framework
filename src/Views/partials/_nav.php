@@ -3,6 +3,7 @@
 ?>
 <nav class="site-nav">
     <a href="/">Inicio</a>
+    <a href="<?= url('curso.cliente') ?>">CLIENTE DAW</a>
     <?php if (!empty($user)): ?>
         <a href="/dashboard">Dashboard</a>
     <a href="<?= url('about') ?>">About</a>

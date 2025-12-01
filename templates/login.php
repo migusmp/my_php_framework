@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - <?= APP_NAME ?></title>
+    <title>Login - <?= env('APP_NAME') ?></title>
 </head>
 
 <body>
