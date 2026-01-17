@@ -64,6 +64,6 @@
 
 ### 1) Clonar e instalar
 ```bash
-git clone <tu-repo>
+git clone https://github.com/migusmp/my_php_framework.git
 cd php-vanilla-server
 composer install
