@@ -1,0 +1,46 @@
+# =========================
+# Dependencies (Composer)
+# =========================
+/vendor/
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*.local
+
+# =========================
+# Logs
+# =========================
+*.log
+/logs/
+/var/log/
+/var/logs/
+/storage/logs/
+
+# If you keep log folders but want empty dirs in git, allow a placeholder:
+!**/.gitkeep
+
+# =========================
+# Cache / temp
+# =========================
+/cache/
+/tmp/
+/storage/cache/
+/storage/tmp/
+
+# =========================
+# OS / editor
+# =========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =========================
+# PHPUnit / tests
+# =========================
+.phpunit.result.cache
+
